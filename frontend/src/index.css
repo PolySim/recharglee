@@ -1,0 +1,26 @@
+*,::after,::before{
+  margin : 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Julius Sans One', sans-serif;
+  background: linear-gradient(90deg, #0E0D0D 50%, #FEFCFC 50%);
+}
+
+@keyframes boxMagic {
+  from{
+      box-shadow: 
+      0 0 0 #FEFCFC,
+      0 0 0 #FEFCFC,
+      0 0 0 #FEFCFC,
+      0 0 0 #FEFCFC;
+  }
+  to{
+      box-shadow:
+      -5px -5px 0 #FEFCFC,
+      5px -5px 0 #FEFCFC,
+      -5px 5px 0 #FEFCFC,
+      5px 5px 0 #FEFCFC;
+  }
+}

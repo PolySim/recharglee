@@ -330,3 +330,30 @@ export const Delivered = styled.div`
   font-weight: normal;
   background-color: #f9f7f1;
 `;
+
+export const Response = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 45%;
+  height: 6.25%;
+  opacity: 90%;
+  font-size: max(0.7vw, 1.3vh);
+  font-weight: normal;
+  margin-left: auto;
+  background-color: #f9f7f1;
+
+  input {
+    width: 90%;
+    text-align: center;
+    background-color: #1fe0;
+    border: 0;
+    font-size: max(0.6vw, 1.2vh);
+    font-family: "M PLUS 2", sans-serif;
+    outline: none;
+  }
+`;

@@ -26,7 +26,7 @@ export default function ChangeHour(): JSX.Element {
   return (
     <Hour>
       {hour}
-      {parseInt(hour) > 11 ? " pm" : " am"}
+      {parseInt(hour) > 11 ? " p.m" : " a.m"}
     </Hour>
   );
 }

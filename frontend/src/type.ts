@@ -23,4 +23,6 @@ export type IconeProps = {
 export type MainContextType = {
   image: ImageAPI;
   info: InfoAPI;
+  message: string;
+  OnToogleMessage: (value: string) => void;
 };

@@ -23,6 +23,9 @@ export type IconeProps = {
 export type MainContextType = {
   image: ImageAPI;
   info: InfoAPI;
+  setInfo : React.Dispatch<React.SetStateAction<InfoAPI | undefined>>;
   message: string;
   OnToogleMessage: (value: string) => void;
+  battery : string;
+  setBattery : React.Dispatch<React.SetStateAction<string>>
 };

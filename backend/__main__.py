@@ -4,7 +4,9 @@ import sys
 from flask import Flask, request, send_file
 from flask_cors import CORS
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
+from pytz import timezone
+import pytz
 
 
 # Relative path setup
@@ -101,6 +103,26 @@ def load_image2(num):
         raise ValueError(f"No file found: {fpath}")
 
     return send_file(fpath)
+
+
+@app.route("/api/update", methods=["PUT"])
+def update_info():
+    try:
+        values = request.json
+        paris_day = datetime.now(pytz.timezone('Europe/Paris')).day
+        if str(paris_day) != values["jour"]:
+            values = {"jour" : str(paris_day), "win" : "0", "lose" : "0", "numero" : str(int(values["numero"]))}
+            # values = {"jour" : str(paris_day), "win" : "0", "lose" : "0", "numero" : str(int(values["numero"]) + 1)}
+        meta_fpath = os.path.join(META_IMGS_PATH, "info.json")
+        with open(meta_fpath, 'w') as meta_filee:
+            json.dump(values, meta_filee)
+
+        response = flask.jsonify({"success": True})
+    except Exception as e:
+        print(f"Failed with message: {str(e)}")
+        response = flask.make_response(
+            "Dataset screen display unsuccessful...", 403)
+    return response
 
 
 if __name__ == "__main__":

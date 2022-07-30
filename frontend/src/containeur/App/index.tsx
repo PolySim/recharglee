@@ -6,11 +6,13 @@ import { ImageAPI, InfoAPI } from "src/type";
 import GetInfo from "src/API/getInfo";
 import GetImage from "src/API/getImage";
 import { MainContext } from "src/context";
+import changeInfo from "src/API/changeInfo";
 
 export default function App(): JSX.Element {
   const [image, setImage] = useState<ImageAPI>();
   const [info, setInfo] = useState<InfoAPI>();
   const [message, setMessage] = useState<string>("");
+  const [battery, setBattery] = useState<string>("100");
 
   const OnToogleMessage = (value: string) => {
     let goodRep = "";
@@ -29,6 +31,10 @@ export default function App(): JSX.Element {
         setInfo(information);
         const imageInfo = await GetImage(information.numero);
         setImage(imageInfo);
+        changeInfo(information);
+      }
+      if (localStorage.getItem('battery')){
+        setBattery(localStorage.getItem('battery') || "")
       }
       getData();
     }
@@ -36,7 +42,7 @@ export default function App(): JSX.Element {
   return (
     <>
       {image && info ? (
-        <MainContext.Provider value={{ image, info, message, OnToogleMessage }}>
+        <MainContext.Provider value={{ image, info, setInfo, message, OnToogleMessage, battery, setBattery }}>
           <Main>
             <ViewLeft />
             <ViewRight />

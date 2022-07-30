@@ -11,7 +11,8 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
       <IntroductionMessage />
       <ImageSend />
       <DeliveredAt num={1} />
-      <EnterResponse />
+
+      {localStorage.getItem("win") === null ? <EnterResponse /> : <></>}
     </Game>
   );
 }

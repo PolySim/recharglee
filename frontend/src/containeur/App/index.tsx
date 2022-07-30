@@ -6,6 +6,7 @@ import { ImageAPI, InfoAPI } from "src/type";
 import GetInfo from "src/API/getInfo";
 import GetImage from "src/API/getImage";
 import { MainContext } from "src/context";
+import changeInfo from "src/API/changeInfo";
 
 export default function App(): JSX.Element {
   const [image, setImage] = useState<ImageAPI>();
@@ -29,6 +30,7 @@ export default function App(): JSX.Element {
         setInfo(information);
         const imageInfo = await GetImage(information.numero);
         setImage(imageInfo);
+        changeInfo(information);
       }
       getData();
     }

@@ -10,6 +10,17 @@ import { MainContext } from "src/context";
 export default function App(): JSX.Element {
   const [image, setImage] = useState<ImageAPI>();
   const [info, setInfo] = useState<InfoAPI>();
+  const [message, setMessage] = useState<string>("");
+
+  const OnToogleMessage = (value: string) => {
+    let goodRep = "";
+    for (const word of value.split(" ")) {
+      if (word !== "") {
+        goodRep += word + " ";
+      }
+    }
+    setMessage(goodRep.substring(0, goodRep.length - 1));
+  };
 
   useEffect(() => {
     if (!info) {
@@ -25,7 +36,7 @@ export default function App(): JSX.Element {
   return (
     <>
       {image && info ? (
-        <MainContext.Provider value={{ image, info }}>
+        <MainContext.Provider value={{ image, info, message, OnToogleMessage }}>
           <Main>
             <ViewLeft />
             <ViewRight />

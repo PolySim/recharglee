@@ -272,7 +272,7 @@ export const Footer = styled.footer`
 `;
 
 export const IconeR = styled.div`
-  height: 68.5%;
+  height: 100%;
   width: 10.85%;
   margin: 0 1% 0 1%;
 
@@ -340,7 +340,7 @@ export const Response = styled.div`
   border: 2px solid black;
   border-radius: 5px;
   width: 45%;
-  height: 6.25%;
+  height: 100%;
   opacity: 90%;
   font-size: max(0.7vw, 1.3vh);
   font-weight: normal;
@@ -355,5 +355,19 @@ export const Response = styled.div`
     font-size: max(0.6vw, 1.2vh);
     font-family: "M PLUS 2", sans-serif;
     outline: none;
+  }
+`;
+
+export const ButtonSubmit = styled.div`
+  position: relative;
+  margin: 1% 7% 0 auto;
+  height: 4.5%;
+  width: 15%;
+
+  img {
+    height: 100%;
+    width: auto;
+    opacity: 90%;
+    cursor: pointer;
   }
 `;

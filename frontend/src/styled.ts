@@ -346,6 +346,7 @@ export const Response = styled.div`
   font-weight: normal;
   margin-left: auto;
   background-color: #f9f7f1;
+  transition: transform 0.4s cubic-bezier(0.23, 1.83, 0.42, 1.19);
 
   input {
     width: 90%;
@@ -355,6 +356,10 @@ export const Response = styled.div`
     font-size: max(0.6vw, 1.2vh);
     font-family: "M PLUS 2", sans-serif;
     outline: none;
+  }
+
+  :hover {
+    transform: scale(1.35) translateX(-12%);
   }
 `;
 
@@ -370,4 +375,65 @@ export const ButtonSubmit = styled.div`
     opacity: 90%;
     cursor: pointer;
   }
+`;
+
+export const Found = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #0e0d0d;
+  font-weight: bold;
+  margin-top: 2%;
+  width: 50%;
+
+  p:nth-of-type(1) {
+    margin-bottom: 1%;
+  }
+
+  p:nth-of-type(2) span {
+    color: #56a526;
+  }
+
+  p:nth-of-type(3) span {
+    color: #d63232;
+  }
+`;
+
+export const Hier = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #0e0d0d;
+  font-weight: bold;
+  height: 100%;
+  width: 50%;
+
+  img {
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.23, 1.83, 0.42, 1.19);
+    z-index: 10;
+  }
+
+  img:hover {
+    transform: scale(2);
+  }
+
+  p:nth-of-type(1) {
+    margin-bottom: 1%;
+  }
+
+  p:nth-of-type(2) {
+    color: #56a526;
+    margin-top: 1%;
+  }
+`;
+
+export const LineFoundYesterday = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  font-size: min(2.1vw, 2.6vh);
+  margin-top: 8%;
+  height: 15vh;
 `;

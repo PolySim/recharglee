@@ -1,5 +1,7 @@
 import React from "react";
-import { Right, H1, Teaser, Rules } from "src/styled";
+import { Right, H1, Teaser, Rules, LineFoundYesterday } from "src/styled";
+import Already from "src/composent/Right/Found/index";
+import Yesterday from "src/composent/Right/Yesterday/index";
 
 export default function ViewRight(): JSX.Element {
   return (
@@ -25,6 +27,10 @@ export default function ViewRight(): JSX.Element {
           photo appears
         </p>
       </Rules>
+      <LineFoundYesterday>
+        <Already />
+        <Yesterday />
+      </LineFoundYesterday>
     </Right>
   );
 }

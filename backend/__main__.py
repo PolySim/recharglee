@@ -110,7 +110,7 @@ def update_info():
     try:
         values = request.json
         paris_day = datetime.now(pytz.timezone('Europe/Paris')).day
-        if paris_day != values["jour"]:
+        if str(paris_day) != values["jour"]:
             values = {"jour" : str(paris_day), "win" : "0", "lose" : "0", "numero" : str(int(values["numero"]))}
             # values = {"jour" : str(paris_day), "win" : "0", "lose" : "0", "numero" : str(int(values["numero"]) + 1)}
         meta_fpath = os.path.join(META_IMGS_PATH, "info.json")

@@ -272,7 +272,6 @@ export const Footer = styled.footer`
 `;
 
 export const IconeR = styled.div`
-  height: 100%;
   width: 10.85%;
   margin: 0 1% 0 1%;
 
@@ -436,4 +435,40 @@ export const LineFoundYesterday = styled.div`
   font-size: min(2.1vw, 2.6vh);
   margin-top: 8%;
   height: 15vh;
+`;
+
+export const Message = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 45%;
+  height: 100%;
+  opacity: 90%;
+  font-size: max(0.7vw, 1.3vh);
+  font-weight: normal;
+  margin-left: auto;
+  padding: 1%;
+  overflow: hidden;
+  background-color: #f9f7f1;
+`;
+
+export const LastMessage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 100%;
+  width: 45%;
+  opacity: 90%;
+  font-size: max(0.5vw, 1.3vh);
+  padding: 1%;
+  background-color: #f9f7f1;
 `;

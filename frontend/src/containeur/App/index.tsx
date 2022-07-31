@@ -32,9 +32,14 @@ export default function App(): JSX.Element {
         const imageInfo = await GetImage(information.numero);
         setImage(imageInfo);
         changeInfo(information);
+        if (information.numero !== localStorage.getItem("numero")) {
+          localStorage.clear();
+          localStorage.setItem("numero", information.numero);
+          localStorage.setItem("battery", "100");
+        }
       }
-      if (localStorage.getItem('battery')){
-        setBattery(localStorage.getItem('battery') || "")
+      if (localStorage.getItem("battery")) {
+        setBattery(localStorage.getItem("battery") || "");
       }
       getData();
     }
@@ -42,7 +47,17 @@ export default function App(): JSX.Element {
   return (
     <>
       {image && info ? (
-        <MainContext.Provider value={{ image, info, setInfo, message, OnToogleMessage, battery, setBattery }}>
+        <MainContext.Provider
+          value={{
+            image,
+            info,
+            setInfo,
+            message,
+            OnToogleMessage,
+            battery,
+            setBattery,
+          }}
+        >
           <Main>
             <ViewLeft />
             <ViewRight />

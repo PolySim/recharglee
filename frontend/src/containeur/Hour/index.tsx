@@ -5,7 +5,15 @@ import { useInterval } from "usehooks-ts";
 export default function ChangeHour(): JSX.Element {
   const today = new Date();
   const [hour, setHour] = useState<string>(
-    `${today.getHours()}.${today.getMinutes()}`
+    `${
+      today.getHours().toString().length != 1
+        ? today.getHours()
+        : `0${today.getHours()}`
+    }.${
+      today.getMinutes().toString().length != 1
+        ? today.getMinutes()
+        : `0${today.getMinutes()}`
+    }`
   );
 
   useInterval(() => {

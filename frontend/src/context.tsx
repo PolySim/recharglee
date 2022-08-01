@@ -16,6 +16,8 @@ export const MainContext = React.createContext<MainContextType>({
   setInfo: () => {},
   message: "",
   OnToogleMessage: () => {},
-  battery : "",
-  setBattery: () => {}
+  battery: "",
+  setBattery: () => {},
+  round: 0,
+  setRound: () => {},
 });

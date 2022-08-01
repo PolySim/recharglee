@@ -14,8 +14,27 @@ export default function EnterResponse(): JSX.Element {
     OnToogleMessage,
     battery,
     setBattery,
+    round,
+    setRound,
   } = useContext(MainContext);
   const inputRef: React.MutableRefObject<any> = useRef(null);
+
+  const addIndice = () => {
+    if (
+      parseInt(localStorage.getItem("battery") || "") <= 85 &&
+      parseInt(localStorage.getItem("battery") || "") > 60
+    ) {
+      localStorage.setItem(`${round + 1}messageLaugh`, " ");
+    } else if (
+      parseInt(localStorage.getItem("battery") || "") <= 60 &&
+      parseInt(localStorage.getItem("battery") || "") > 30
+    ) {
+      localStorage.setItem(`${round + 1}indice`, image.indice1);
+    } else {
+      localStorage.setItem(`${round + 1}indice`, image.indice2);
+    }
+    setRound(round + 1);
+  };
 
   const badResponse = () => {
     const perte = Math.floor(Math.random() * 15) + 15;
@@ -29,14 +48,17 @@ export default function EnterResponse(): JSX.Element {
     parseInt(battery) - perte > 0
       ? localStorage.setItem("battery", (parseInt(battery) - perte).toString())
       : localStorage.setItem("battery", "0");
-    localStorage.setItem("rep1", message);
+    localStorage.setItem(`${round}responseFalse${perte}`, message);
+    setRound(round + 1);
     if (parseInt(battery) - perte <= 0) {
       let newInfo = info;
       newInfo.lose = (parseInt(newInfo.lose) + 1).toString();
       setInfo(newInfo);
       changeInfo(newInfo);
-      localStorage.setItem("win", "false");
+      localStorage.setItem(`${round}win`, "false");
+      setRound(round + 1);
     } else {
+      addIndice();
       OnToogleMessage("");
     }
   };
@@ -47,7 +69,10 @@ export default function EnterResponse(): JSX.Element {
     setInfo(newInfo);
     changeInfo(newInfo);
     OnToogleMessage("");
-    localStorage.setItem("win", "true");
+    localStorage.setItem(`${round}responseWin`, message);
+    setRound(round + 1);
+    localStorage.setItem(`${round}win`, "true");
+    setRound(round + 1);
   };
 
   const checkResponse = () => {
@@ -61,6 +86,7 @@ export default function EnterResponse(): JSX.Element {
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
+      inputRef.current.scrollIntoView();
     }
   }, [message]);
 

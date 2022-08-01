@@ -29,9 +29,12 @@ export type MainContextType = {
   OnToogleMessage: (value: string) => void;
   battery: string;
   setBattery: React.Dispatch<React.SetStateAction<string>>;
+  round: number;
+  setRound: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export type ViewMessageProps = {
   color: string;
   message: string;
+  perte: string;
 };

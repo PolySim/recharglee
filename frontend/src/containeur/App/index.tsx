@@ -13,15 +13,14 @@ export default function App(): JSX.Element {
   const [info, setInfo] = useState<InfoAPI>();
   const [message, setMessage] = useState<string>("");
   const [battery, setBattery] = useState<string>("100");
+  const [round, setRound] = useState<number>(0);
 
   const OnToogleMessage = (value: string) => {
-    let goodRep = "";
-    for (const word of value.split(" ")) {
-      if (word !== "") {
-        goodRep += word + " ";
-      }
+    if (value.slice(-2) === "  ") {
+      setMessage(value.slice(0, value.length - 1));
+    } else {
+      setMessage(value);
     }
-    setMessage(goodRep.substring(0, goodRep.length - 1));
   };
 
   useEffect(() => {
@@ -56,6 +55,8 @@ export default function App(): JSX.Element {
             OnToogleMessage,
             battery,
             setBattery,
+            round,
+            setRound,
           }}
         >
           <Main>

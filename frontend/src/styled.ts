@@ -319,11 +319,12 @@ export const Delivered = styled.div`
   align-items: center;
   justify-content: center;
   border: 2px solid black;
+  box-sizing: border-box;
   border-radius: 5px;
   margin-left: 13%;
   margin-top: 2%;
   width: 45%;
-  height: 4%;
+  height: 5.5%;
   opacity: 90%;
   font-size: max(0.7vw, 1.3vh);
   font-weight: normal;
@@ -471,4 +472,30 @@ export const LastMessage = styled.div`
   font-size: max(0.5vw, 1.3vh);
   padding: 1%;
   background-color: #f9f7f1;
+`;
+
+export const Indice = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1%;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 45%;
+  height: 80%;
+  opacity: 90%;
+  font-size: max(0.6vw, 1.3vh);
+  font-weight: normal;
+  background-color: #f9f7f1;
+`;
+
+export const Perte = styled.div`
+  display: flex;
+  color: #d63232;
+  font-size: max(0.7vw, 1.3vh);
+  margin: 0 6.5% 0 auto;
+  font-weight: normal;
+  width: 20%;
 `;

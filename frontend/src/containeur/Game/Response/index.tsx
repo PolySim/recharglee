@@ -62,7 +62,7 @@ export default function EnterResponse(): JSX.Element {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [message]);
 
   return (
     <>
@@ -72,7 +72,10 @@ export default function EnterResponse(): JSX.Element {
             placeholder="Type yours answer ..."
             autoComplete="off"
             maxLength={25}
-            onChange={(e) => OnToogleMessage(e.target.value)}
+            value={message}
+            onChange={(e) => {
+              OnToogleMessage(e.target.value);
+            }}
             ref={inputRef}
           />
         </Response>

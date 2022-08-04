@@ -14,8 +14,30 @@ export default function EnterResponse(): JSX.Element {
     OnToogleMessage,
     battery,
     setBattery,
+    round,
+    setRound,
+    setDisplayWait,
   } = useContext(MainContext);
+
   const inputRef: React.MutableRefObject<any> = useRef(null);
+  const buttonRef: React.MutableRefObject<any> = useRef(null);
+
+  const addIndice = () => {
+    if (
+      parseInt(localStorage.getItem("battery") || "") <= 85 &&
+      parseInt(localStorage.getItem("battery") || "") > 60
+    ) {
+      localStorage.setItem(`${round + 1}messageLaugh`, " ");
+    } else if (
+      parseInt(localStorage.getItem("battery") || "") <= 60 &&
+      parseInt(localStorage.getItem("battery") || "") > 30
+    ) {
+      localStorage.setItem(`${round + 1}indice`, image.indice1);
+    } else {
+      localStorage.setItem(`${round + 1}indice`, image.indice2);
+    }
+    setRound(round + 1);
+  };
 
   const badResponse = () => {
     const perte = Math.floor(Math.random() * 15) + 15;
@@ -29,13 +51,17 @@ export default function EnterResponse(): JSX.Element {
     parseInt(battery) - perte > 0
       ? localStorage.setItem("battery", (parseInt(battery) - perte).toString())
       : localStorage.setItem("battery", "0");
+    localStorage.setItem(`${round}responseFalse${perte}`, message);
+    setRound(round + 1);
     if (parseInt(battery) - perte <= 0) {
       let newInfo = info;
       newInfo.lose = (parseInt(newInfo.lose) + 1).toString();
       setInfo(newInfo);
       changeInfo(newInfo);
-      localStorage.setItem("win", "false");
+      localStorage.setItem(`${round}win`, "false");
+      setRound(round + 1);
     } else {
+      addIndice();
       OnToogleMessage("");
     }
   };
@@ -46,23 +72,50 @@ export default function EnterResponse(): JSX.Element {
     setInfo(newInfo);
     changeInfo(newInfo);
     OnToogleMessage("");
-    localStorage.setItem("win", "true");
+    localStorage.setItem(`${round}responseWin`, message);
+    setRound(round + 1);
+    localStorage.setItem(`${round}win`, "true");
+    setRound(round + 1);
   };
 
   const checkResponse = () => {
-    if (message !== image.response) {
-      badResponse();
-    } else {
-      goodRep();
-    }
+    setDisplayWait(true);
+    setTimeout(() => {
+      if (message !== image.response) {
+        badResponse();
+      } else {
+        goodRep();
+      }
+      setDisplayWait(false);
+    }, 4000);
   };
+
+  useEffect(() => {
+    const keyDownReset = (event: {
+      key: string;
+      preventDefault: () => void;
+    }) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (inputRef.current.value !== "") {
+          checkResponse();
+        }
+      }
+    };
+    document.addEventListener("keydown", keyDownReset);
+    return () => {
+      document.removeEventListener("keydown", keyDownReset);
+    };
+  }, [message]);
 
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, []);
-
+    if (buttonRef.current) {
+      buttonRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [message]);
   return (
     <>
       <div style={{ display: "flex", height: "6.25%", marginTop: "4%" }}>
@@ -71,11 +124,14 @@ export default function EnterResponse(): JSX.Element {
             placeholder="Type yours answer ..."
             autoComplete="off"
             maxLength={25}
-            onChange={(e) => OnToogleMessage(e.target.value)}
+            value={message}
+            onChange={(e) => {
+              OnToogleMessage(e.target.value);
+            }}
             ref={inputRef}
           />
         </Response>
-        <Icone_Rechargle image="iconeInvit.png" />
+        <Icone_Rechargle image="iconeInvit.png" height="100%" />
       </div>
       <ButtonSubmit>
         <img

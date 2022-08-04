@@ -18,14 +18,25 @@ export type ImageAPI = {
 
 export type IconeProps = {
   image: string;
+  height: string;
 };
 
 export type MainContextType = {
   image: ImageAPI;
   info: InfoAPI;
-  setInfo : React.Dispatch<React.SetStateAction<InfoAPI | undefined>>;
+  setInfo: React.Dispatch<React.SetStateAction<InfoAPI | undefined>>;
   message: string;
   OnToogleMessage: (value: string) => void;
-  battery : string;
-  setBattery : React.Dispatch<React.SetStateAction<string>>
+  battery: string;
+  setBattery: React.Dispatch<React.SetStateAction<string>>;
+  round: number;
+  setRound: React.Dispatch<React.SetStateAction<number>>;
+  displayWait: boolean;
+  setDisplayWait: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type ViewMessageProps = {
+  color: string;
+  message: string;
+  perte: string;
 };

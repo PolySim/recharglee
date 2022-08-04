@@ -272,7 +272,6 @@ export const Footer = styled.footer`
 `;
 
 export const IconeR = styled.div`
-  height: 100%;
   width: 10.85%;
   margin: 0 1% 0 1%;
 
@@ -320,11 +319,12 @@ export const Delivered = styled.div`
   align-items: center;
   justify-content: center;
   border: 2px solid black;
+  box-sizing: border-box;
   border-radius: 5px;
   margin-left: 13%;
   margin-top: 2%;
   width: 45%;
-  height: 4%;
+  height: 5.5%;
   opacity: 90%;
   font-size: max(0.7vw, 1.3vh);
   font-weight: normal;
@@ -436,4 +436,95 @@ export const LineFoundYesterday = styled.div`
   font-size: min(2.1vw, 2.6vh);
   margin-top: 8%;
   height: 15vh;
+`;
+
+export const Message = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 45%;
+  height: 100%;
+  opacity: 90%;
+  font-size: max(0.7vw, 1.3vh);
+  font-weight: normal;
+  margin-left: auto;
+  padding: 1%;
+  overflow: hidden;
+  background-color: #f9f7f1;
+`;
+
+export const LastMessage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 100%;
+  width: 45%;
+  opacity: 90%;
+  font-size: max(0.5vw, 1.3vh);
+  padding: 1%;
+  background-color: #f9f7f1;
+`;
+
+export const Indice = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1%;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 45%;
+  height: 80%;
+  opacity: 90%;
+  font-size: max(0.6vw, 1.3vh);
+  font-weight: normal;
+  background-color: #f9f7f1;
+`;
+
+export const Perte = styled.div`
+  display: flex;
+  color: #d63232;
+  font-size: max(0.7vw, 1.3vh);
+  margin: 0 6.5% 0 auto;
+  font-weight: normal;
+  width: 20%;
+`;
+
+export const AnimWait = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 60%;
+  width: 25%;
+  background-color: #f9f7f1;
+  top: 2%;
+  border: 2px solid black;
+  border-radius: 10%;
+  left: 13%;
+  font-size: min(0.7vw, 1.5vh);
+
+  span:nth-of-type(1) {
+    animation: wait 1.4s infinite ease-in-out;
+  }
+
+  span:nth-of-type(2) {
+    animation: wait 1.4s infinite ease-in-out;
+    animation-delay: 0.3s;
+  }
+
+  span:nth-of-type(3) {
+    animation: wait 1.4s infinite ease-in-out;
+    animation-delay: 0.6s;
+  }
 `;

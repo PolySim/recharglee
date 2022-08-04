@@ -13,15 +13,15 @@ export default function App(): JSX.Element {
   const [info, setInfo] = useState<InfoAPI>();
   const [message, setMessage] = useState<string>("");
   const [battery, setBattery] = useState<string>("100");
+  const [round, setRound] = useState<number>(0);
+  const [displayWait, setDisplayWait] = useState<boolean>(false);
 
   const OnToogleMessage = (value: string) => {
-    let goodRep = "";
-    for (const word of value.split(" ")) {
-      if (word !== "") {
-        goodRep += word + " ";
-      }
+    if (value.slice(-2) === "  ") {
+      setMessage(value.slice(0, value.length - 1));
+    } else {
+      setMessage(value);
     }
-    setMessage(goodRep.substring(0, goodRep.length - 1));
   };
 
   useEffect(() => {
@@ -32,9 +32,15 @@ export default function App(): JSX.Element {
         const imageInfo = await GetImage(information.numero);
         setImage(imageInfo);
         changeInfo(information);
+        if (information.jour !== localStorage.getItem("numero")) {
+          localStorage.clear();
+          localStorage.setItem("numero", information.jour);
+          localStorage.setItem("battery", "100");
+          setBattery("100");
+        }
       }
-      if (localStorage.getItem('battery')){
-        setBattery(localStorage.getItem('battery') || "")
+      if (localStorage.getItem("battery")) {
+        setBattery(localStorage.getItem("battery") || "");
       }
       getData();
     }
@@ -42,7 +48,21 @@ export default function App(): JSX.Element {
   return (
     <>
       {image && info ? (
-        <MainContext.Provider value={{ image, info, setInfo, message, OnToogleMessage, battery, setBattery }}>
+        <MainContext.Provider
+          value={{
+            image,
+            info,
+            setInfo,
+            message,
+            OnToogleMessage,
+            battery,
+            setBattery,
+            round,
+            setRound,
+            displayWait,
+            setDisplayWait,
+          }}
+        >
           <Main>
             <ViewLeft />
             <ViewRight />

@@ -40,3 +40,18 @@ body {
     transform: translateX(0px);
   }
 }
+
+@keyframes wait {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+  99% {
+    opacity: 0;
+    scale: 0;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}

@@ -512,6 +512,7 @@ export const AnimWait = styled.div`
   border: 2px solid black;
   border-radius: 10%;
   left: 13%;
+  font-size: min(0.7vw, 1.5vh);
 
   span:nth-of-type(1) {
     animation: wait 1.4s infinite ease-in-out;

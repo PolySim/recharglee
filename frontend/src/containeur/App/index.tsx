@@ -14,6 +14,7 @@ export default function App(): JSX.Element {
   const [message, setMessage] = useState<string>("");
   const [battery, setBattery] = useState<string>("100");
   const [round, setRound] = useState<number>(0);
+  const [displayWait, setDisplayWait] = useState<boolean>(false);
 
   const OnToogleMessage = (value: string) => {
     if (value.slice(-2) === "  ") {
@@ -31,10 +32,11 @@ export default function App(): JSX.Element {
         const imageInfo = await GetImage(information.numero);
         setImage(imageInfo);
         changeInfo(information);
-        if (information.numero !== localStorage.getItem("numero")) {
+        if (information.jour !== localStorage.getItem("numero")) {
           localStorage.clear();
-          localStorage.setItem("numero", information.numero);
+          localStorage.setItem("numero", information.jour);
           localStorage.setItem("battery", "100");
+          setBattery("100");
         }
       }
       if (localStorage.getItem("battery")) {
@@ -57,6 +59,8 @@ export default function App(): JSX.Element {
             setBattery,
             round,
             setRound,
+            displayWait,
+            setDisplayWait,
           }}
         >
           <Main>

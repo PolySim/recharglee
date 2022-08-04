@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
 import { Game } from "src/styled";
 import IntroductionMessage from "src/composent/Left/PhoneBack/Game/FirstMessage";
 import ImageSend from "src/containeur/Game/Image/index";
@@ -7,8 +8,11 @@ import EnterResponse from "src/containeur/Game/Response";
 import ViewMessage from "src/composent/Left/PhoneBack/Game/MessageEnter";
 import FinillyMessage from "src/containeur/Game/LastMessage";
 import DisplayIndice from "src/composent/Left/PhoneBack/Game/Indice";
+import { AnimWait } from "src/styled";
+import Icone_Rechargle from "src/composent/Left/PhoneBack/Game/Icone";
 
 export default function ViewGame({ height }: { height: number }): JSX.Element {
+  const { displayWait, message } = useContext(MainContext);
   return (
     <Game style={{ height: 0.6 * height }}>
       <IntroductionMessage />
@@ -62,7 +66,32 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
           }
         })}
 
+      {displayWait ? (
+        <>
+          <ViewMessage color="#000" perte="0" message={message} />
+          <div
+            style={{
+              display: "flex",
+              position: "relative",
+              height: "10.5%",
+              marginTop: "6%",
+            }}
+          >
+            <Icone_Rechargle image="iconeRechargle.png" height="67%" />
+            <AnimWait>
+              <span>⚫</span>
+              <span>⚫</span>
+              <span>⚫</span>
+            </AnimWait>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
+
       {Object.keys(localStorage).some((keyName) => keyName.includes("win")) ? (
+        <></>
+      ) : displayWait ? (
         <></>
       ) : (
         <EnterResponse />

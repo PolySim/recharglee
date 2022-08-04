@@ -16,8 +16,11 @@ export default function EnterResponse(): JSX.Element {
     setBattery,
     round,
     setRound,
+    setDisplayWait,
   } = useContext(MainContext);
+
   const inputRef: React.MutableRefObject<any> = useRef(null);
+  const buttonRef: React.MutableRefObject<any> = useRef(null);
 
   const addIndice = () => {
     if (
@@ -76,20 +79,43 @@ export default function EnterResponse(): JSX.Element {
   };
 
   const checkResponse = () => {
-    if (message !== image.response) {
-      badResponse();
-    } else {
-      goodRep();
-    }
+    setDisplayWait(true);
+    setTimeout(() => {
+      if (message !== image.response) {
+        badResponse();
+      } else {
+        goodRep();
+      }
+      setDisplayWait(false);
+    }, 4000);
   };
+
+  useEffect(() => {
+    const keyDownReset = (event: {
+      key: string;
+      preventDefault: () => void;
+    }) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (inputRef.current.value !== "") {
+          checkResponse();
+        }
+      }
+    };
+    document.addEventListener("keydown", keyDownReset);
+    return () => {
+      document.removeEventListener("keydown", keyDownReset);
+    };
+  }, [message]);
 
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
-      inputRef.current.scrollIntoView();
+    }
+    if (buttonRef.current) {
+      buttonRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [message]);
-
   return (
     <>
       <div style={{ display: "flex", height: "6.25%", marginTop: "4%" }}>

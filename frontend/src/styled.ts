@@ -499,3 +499,31 @@ export const Perte = styled.div`
   font-weight: normal;
   width: 20%;
 `;
+
+export const AnimWait = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 60%;
+  width: 25%;
+  background-color: #f9f7f1;
+  top: 2%;
+  border: 2px solid black;
+  border-radius: 10%;
+  left: 13%;
+
+  span:nth-of-type(1) {
+    animation: wait 1.4s infinite ease-in-out;
+  }
+
+  span:nth-of-type(2) {
+    animation: wait 1.4s infinite ease-in-out;
+    animation-delay: 0.3s;
+  }
+
+  span:nth-of-type(3) {
+    animation: wait 1.4s infinite ease-in-out;
+    animation-delay: 0.6s;
+  }
+`;

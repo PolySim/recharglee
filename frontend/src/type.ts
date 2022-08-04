@@ -31,6 +31,8 @@ export type MainContextType = {
   setBattery: React.Dispatch<React.SetStateAction<string>>;
   round: number;
   setRound: React.Dispatch<React.SetStateAction<number>>;
+  displayWait: boolean;
+  setDisplayWait: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type ViewMessageProps = {

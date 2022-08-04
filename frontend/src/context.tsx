@@ -20,4 +20,6 @@ export const MainContext = React.createContext<MainContextType>({
   setBattery: () => {},
   round: 0,
   setRound: () => {},
+  displayWait: false,
+  setDisplayWait: () => {},
 });

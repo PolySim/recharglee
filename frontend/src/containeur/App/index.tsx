@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Main } from "src/styled";
 import ViewRight from "src/composent/Right";
 import ViewLeft from "src/containeur/ViewLeft";
@@ -7,8 +7,11 @@ import GetInfo from "src/API/getInfo";
 import GetImage from "src/API/getImage";
 import { MainContext } from "src/context";
 import changeInfo from "src/API/changeInfo";
+import ViewPhone from "src/composent/PhoneResponsive";
 
 export default function App(): JSX.Element {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const [width, setWidth] = useState<number>(0);
   const [image, setImage] = useState<ImageAPI>();
   const [info, setInfo] = useState<InfoAPI>();
   const [message, setMessage] = useState<string>("");
@@ -45,6 +48,18 @@ export default function App(): JSX.Element {
       getData();
     }
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (ref.current) {
+        setWidth(ref.current.offsetWidth);
+      }
+    };
+    if (width === 0) {
+      handleResize();
+    }
+    window.addEventListener("resize", handleResize);
+  }, []);
   return (
     <>
       {image && info ? (
@@ -63,10 +78,18 @@ export default function App(): JSX.Element {
             setDisplayWait,
           }}
         >
-          <Main>
-            <ViewLeft />
-            <ViewRight />
-          </Main>
+          <div ref={ref}>
+            {width > 800 || width === 0 ? (
+              <Main>
+                <ViewLeft />
+                <ViewRight />
+              </Main>
+            ) : (
+              <Main>
+                <ViewPhone />
+              </Main>
+            )}
+          </div>
         </MainContext.Provider>
       ) : (
         <></>

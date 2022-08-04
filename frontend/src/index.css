@@ -55,3 +55,12 @@ body {
     scale: 1;
   }
 }
+
+@keyframes apparition {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}

@@ -1,11 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
+import { MainContext } from "src/context";
 import { Delivered } from "src/styled";
 
 export default function DeliveredAt({ num }: { num: number }): JSX.Element {
   const deliveredRef: React.MutableRefObject<any> = useRef(null);
 
+  const { round } = useContext(MainContext);
+
   useEffect(() => {
-    if (deliveredRef.current) {
+    if (deliveredRef.current && round !== 0) {
       deliveredRef.current.scrollIntoView();
     }
   });

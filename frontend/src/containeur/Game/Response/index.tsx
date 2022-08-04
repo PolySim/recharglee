@@ -112,7 +112,7 @@ export default function EnterResponse(): JSX.Element {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-    if (buttonRef.current) {
+    if (buttonRef.current && round !== 0) {
       buttonRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [message]);

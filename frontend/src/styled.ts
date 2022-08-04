@@ -11,6 +11,9 @@ export const Left = styled.div`
 `;
 
 export const Right = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   flex-basis: 50%;
   height: 100%;
 `;
@@ -19,6 +22,12 @@ export const Main = styled.main`
   display: flex;
   height: 100vh;
   width: 100vw;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    background-color: #0e0d0d;
+    height: auto;
+  }
 `;
 
 export const H1 = styled.h1`
@@ -28,6 +37,7 @@ export const H1 = styled.h1`
   margin: 0 auto;
   width: min(40vw, 55vh);
   margin-top: 3%;
+  animation: 0.8s ease-out forwards apparition;
 
   &::after {
     content: "";
@@ -41,6 +51,11 @@ export const H1 = styled.h1`
   &:hover::after {
     transform: scale(1);
   }
+
+  @media screen and (max-width: 800px) {
+    font-size: 13vw;
+    width: 83vw;
+  }
 `;
 
 export const Teaser = styled.p`
@@ -49,6 +64,11 @@ export const Teaser = styled.p`
   margin: 5% 10% 0;
   font-size: min(2.1vw, 3.6vh);
   font-weight: bold;
+
+  @media screen and (max-width: 800px) {
+    margin-top: 1%;
+    font-size: 3.4vw;
+  }
 `;
 
 export const Rules = styled.div`
@@ -117,6 +137,30 @@ export const Rules = styled.div`
   p:nth-child(5):hover::after {
     transform: scale(1);
   }
+
+  @media screen and (max-width: 800px) {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    row-gap: 25px;
+    column-gap: 25px;
+    justify-content: center;
+    width: 100%;
+    background-color: #fefcfc;
+    margin: 0;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 3vw;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    p:first-child {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      font-size: 3.5vw;
+    }
+  }
 `;
 
 export const Iphone = styled.img`
@@ -125,6 +169,14 @@ export const Iphone = styled.img`
   width: auto;
   z-index: 1;
   top: 8%;
+
+  @media screen and (max-width: 800px) {
+    height: 80vh;
+    min-height: 80vh;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 export const Back = styled.div`
@@ -142,6 +194,11 @@ export const Back = styled.div`
     linear-gradient(90deg, rgb(255, 255, 255), rgb(255, 255, 255));
   margin: 0 auto;
   border-radius: 6%;
+
+  @media screen and (max-width: 800px) {
+    height: 76vh;
+    top: 4.35%;
+  }
 `;
 
 export const Barre = styled.div`
@@ -163,6 +220,10 @@ export const Barre = styled.div`
 
   &:nth-child(n) {
     opacity: 90%;
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: max(0.8vw, 1.7vh);
   }
 `;
 
@@ -254,6 +315,13 @@ export const Twitter = styled.a`
   animation: 0.8s linear infinite alternate boxMagic;
   font-family: "Julius Sans One", sans-serif;
   font-weight: bold;
+
+  @media screen and (max-width: 800px) {
+    font-size: min(2.5vw, 2.3vh);
+    left: 50%;
+    transform: translateX(-50%);
+    top: 93%;
+  }
 `;
 
 export const Footer = styled.footer`
@@ -269,6 +337,14 @@ export const Footer = styled.footer`
   font-size: min(1.1vw, 2.4vh);
   line-height: 150%;
   font-family: "Julius Sans One", sans-serif;
+
+  @media screen and (max-width: 800px) {
+    background-color: #000;
+    position: relative;
+    height: 6vh;
+    margin-top: 0;
+    font-size: 2vw;
+  }
 `;
 
 export const IconeR = styled.div`
@@ -398,6 +474,10 @@ export const Found = styled.div`
   p:nth-of-type(3) span {
     color: #d63232;
   }
+
+  @media screen and (max-width: 800px) {
+    margin-top: 0;
+  }
 `;
 
 export const Hier = styled.div`
@@ -428,6 +508,12 @@ export const Hier = styled.div`
     color: #56a526;
     margin-top: 1%;
   }
+
+  @media screen and (max-width: 800px) {
+    img {
+      height: 70%;
+    }
+  }
 `;
 
 export const LineFoundYesterday = styled.div`
@@ -436,6 +522,12 @@ export const LineFoundYesterday = styled.div`
   font-size: min(2.1vw, 2.6vh);
   margin-top: 8%;
   height: 15vh;
+
+  @media screen and (max-width: 800px) {
+    margin-top: 5%;
+    font-size: 3vw;
+    align-items: center;
+  }
 `;
 
 export const Message = styled.div`

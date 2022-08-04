@@ -257,7 +257,7 @@ export const Name = styled.div`
   }
 `;
 
-export const IconeName = styled.div`
+export const IconsName = styled.div`
   height: 90%;
   width: auto;
 `;
@@ -311,7 +311,7 @@ export const Twitter = styled.a`
   border-color: #fefcfc;
   text-decoration: none;
   color: #0e0d0d;
-  font-size: min(2vw, 2.4vh);
+  font-size: min(2vw, 2.1vh);
   animation: 0.8s linear infinite alternate boxMagic;
   font-family: "Julius Sans One", sans-serif;
   font-weight: bold;
@@ -347,7 +347,7 @@ export const Footer = styled.footer`
   }
 `;
 
-export const IconeR = styled.div`
+export const IconsR = styled.div`
   width: 10.85%;
   margin: 0 1% 0 1%;
 
@@ -618,5 +618,55 @@ export const AnimWait = styled.div`
   span:nth-of-type(3) {
     animation: wait 1.4s infinite ease-in-out;
     animation-delay: 0.6s;
+  }
+`;
+
+export const Start = styled.button`
+  background-color: #f9faf6;
+  height: 100%;
+  width: 100%;
+  border: 0;
+
+  h2 {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: normal;
+    font-size: 5.3vh;
+  }
+
+  div:nth-of-type(1) {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #a9ca7c;
+    height: 21%;
+    width: 47%;
+    border: 1px solid #76c893;
+    border-radius: 15px;
+    z-index: 10;
+    cursor: pointer;
+
+    img {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 40%;
+    }
+
+    p {
+      position: absolute;
+      top: 63%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3.5vh;
+      color: #f9faf6;
+      font-family: "M PLUS 2", sans-serif;
+      font-weight: bold;
+    }
   }
 `;

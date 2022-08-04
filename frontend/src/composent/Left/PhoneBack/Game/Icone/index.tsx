@@ -1,14 +1,14 @@
 import React from "react";
-import { IconeR } from "src/styled";
-import { IconeProps } from "src/type";
+import { IconsR } from "src/styled";
+import { IconsProps as IconsProps } from "src/type";
 
 export default function Icone_Rechargle({
   image,
   height,
-}: IconeProps): JSX.Element {
+}: IconsProps): JSX.Element {
   return (
-    <IconeR style={{ height: height }}>
+    <IconsR style={{ height: height }}>
       <img src={require(`./${image}`)} alt="icone rechargle" />
-    </IconeR>
+    </IconsR>
   );
 }

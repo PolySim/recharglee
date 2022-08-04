@@ -16,7 +16,7 @@ export type ImageAPI = {
   response: string;
 };
 
-export type IconeProps = {
+export type IconsProps = {
   image: string;
   height: string;
 };

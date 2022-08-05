@@ -1,14 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
 import { Delivered } from "src/styled";
 
 export default function DeliveredAt({ num }: { num: number }): JSX.Element {
-  const deliveredRef: React.MutableRefObject<any> = useRef(null);
-
-  useEffect(() => {
-    if (deliveredRef.current) {
-      deliveredRef.current.scrollIntoView();
-    }
-  });
+  const { lang } = useContext(MainContext);
 
   const today = new Date();
   let time: string = `${
@@ -25,5 +20,13 @@ export default function DeliveredAt({ num }: { num: number }): JSX.Element {
   } else {
     localStorage.setItem(`delivered${num}`, time);
   }
-  return <Delivered ref={deliveredRef}>Delivered at {time}</Delivered>;
+  return (
+    <>
+      {lang === "us" ? (
+        <Delivered>Delivered at {time}</Delivered>
+      ) : (
+        <Delivered>Envoyé à {time}</Delivered>
+      )}
+    </>
+  );
 }

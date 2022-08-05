@@ -1,20 +1,48 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { MainContext } from "src/context";
-import { Right, H1, Teaser, Rules, LineFoundYesterday } from "src/styled";
+import { H1, Teaser, LineFoundYesterday, Iphone, Rules } from "src/styled";
 import Already from "src/composent/Right/Found/index";
 import Yesterday from "src/composent/Right/Yesterday/index";
+import PhoneBack from "src/composent/Left/PhoneBack";
+import ShareOnTwitter from "src/composent/Left/ShareTwitter";
+import CreateFooter from "src/composent/Left/Footer";
 
-export default function ViewRight(): JSX.Element {
+export default function ViewPhone(): JSX.Element {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const [height, setHeight] = useState<number>(0);
   const { lang } = useContext(MainContext);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (ref.current) {
+        setHeight(ref.current.offsetHeight);
+      }
+    };
+    if (height === 0) {
+      handleResize();
+    }
+    window.addEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <Right>
-      <H1>RECHARGLE</H1>
-      <Teaser>
-        {lang === "us"
-          ? "Guess the celebrity before the phone battery runs out"
-          : "Trouve la célébrité avant que le téléphone ne s'éteigne"}
-      </Teaser>
+    <>
+      <div style={{ backgroundColor: "#fff", height: "40vh" }}>
+        <H1>RECHARGLE</H1>
+        <Teaser>
+          {lang === "us"
+            ? "Guess the celebrity before the phone battery runs out"
+            : "Trouve la célébrité avant que le téléphone ne s'éteigne"}
+        </Teaser>
+        <LineFoundYesterday>
+          <Already />
+          <Yesterday />
+        </LineFoundYesterday>
+      </div>
+      <div ref={ref} style={{ height: "90vh", position: "relative" }}>
+        <Iphone src={require("./iphone.png")} alt="iphone" />
+        <PhoneBack height={1.125 * height} />
+        <ShareOnTwitter height={1.2 * height} />
+      </div>
       <Rules>
         <p>{lang === "us" ? "Game rules" : "Règles du jeu"}</p>
         {lang === "us" ? (
@@ -60,10 +88,7 @@ export default function ViewRight(): JSX.Element {
           </>
         )}
       </Rules>
-      <LineFoundYesterday>
-        <Already />
-        <Yesterday />
-      </LineFoundYesterday>
-    </Right>
+      <CreateFooter />
+    </>
   );
 }

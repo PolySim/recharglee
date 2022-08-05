@@ -4,11 +4,11 @@ import ChangeHour from "src/containeur/Hour";
 import { MainContext } from "src/context";
 
 export default function TopBarre(): JSX.Element {
-  const { battery } = useContext(MainContext);
+  const { battery, lang } = useContext(MainContext);
   return (
     <Barre>
       <img src={require("./wifi.png")} alt="wifi" />
-      <div>HORIZON</div>
+      <div>{lang === "us" ? "HORIZON" : "ORANGE"}</div>
       <ChangeHour />
       <Battery>
         <span>{battery}</span>%

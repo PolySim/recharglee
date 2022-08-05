@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
 import { Footer } from "src/styled";
 
 export default function CreateFooter(): JSX.Element {
+  const { lang } = useContext(MainContext);
   return (
     <Footer>
-      <p>
-        © 2022 Rechargle — Designed and developed by @enzo.marie &
-        @simon.desdevises
-      </p>
+      {lang === "us" ? (
+        <p>
+          © 2022 Rechargle — Designed and developed by @enzo.marie &
+          @simon.desdevises
+        </p>
+      ) : (
+        <p>
+          © 2022 Rechargle — Désigné et developé par @enzo.marie &
+          @simon.desdevises
+        </p>
+      )}
       <p>Contact : contact@rechargle.com</p>
     </Footer>
   );

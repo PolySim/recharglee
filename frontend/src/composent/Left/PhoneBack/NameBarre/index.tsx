@@ -1,16 +1,19 @@
-import React from "react";
-import { Name, IconeName, ColumnOnline, TextOnline } from "src/styled";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
+import { Name, IconsName, ColumnOnline, TextOnline } from "src/styled";
 
 export default function NameBarre(): JSX.Element {
+  const { lang } = useContext(MainContext);
+
   return (
     <Name>
-      <IconeName>
+      <IconsName>
         <img src={require("./logo.png")} alt="icone" height="100%" />
-      </IconeName>
+      </IconsName>
       <ColumnOnline>
         Rechargle n°{"1"}
         <TextOnline>
-          <span>🟢</span> Online
+          <span>🟢</span> {lang === "us" ? "Online" : "Connecté"}
         </TextOnline>
       </ColumnOnline>
     </Name>

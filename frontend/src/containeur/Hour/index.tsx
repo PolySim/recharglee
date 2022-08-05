@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MainContext } from "src/context";
 import { Hour } from "src/styled";
 import { useInterval } from "usehooks-ts";
 
 export default function ChangeHour(): JSX.Element {
+  const { lang } = useContext(MainContext);
+
   const today = new Date();
   const [hour, setHour] = useState<string>(
     `${
@@ -33,8 +36,9 @@ export default function ChangeHour(): JSX.Element {
   }, 30000);
   return (
     <Hour>
-      {hour}
-      {parseInt(hour) > 11 ? " p.m" : " a.m"}
+      {lang === "us"
+        ? `${hour} ${parseInt(hour) > 11 ? " p.m" : " a.m"}`
+        : hour}
     </Hour>
   );
 }

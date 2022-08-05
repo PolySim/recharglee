@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Main } from "src/styled";
 import ViewRight from "src/composent/Right";
 import ViewLeft from "src/containeur/ViewLeft";
@@ -7,14 +7,22 @@ import GetInfo from "src/API/getInfo";
 import GetImage from "src/API/getImage";
 import { MainContext } from "src/context";
 import changeInfo from "src/API/changeInfo";
+import ViewPhone from "src/composent/PhoneResponsive";
 
 export default function App(): JSX.Element {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const [image, setImage] = useState<ImageAPI>();
   const [info, setInfo] = useState<InfoAPI>();
   const [message, setMessage] = useState<string>("");
   const [battery, setBattery] = useState<string>("100");
   const [round, setRound] = useState<number>(0);
   const [displayWait, setDisplayWait] = useState<boolean>(false);
+  const [start, setStart] = useState<boolean>(true);
+  const [finish, setFinish] = useState<boolean>(false);
+  const [lang, setLang] = useState<string>(
+    localStorage.getItem("lang") || "fr"
+  );
 
   const OnToogleMessage = (value: string) => {
     if (value.slice(-2) === "  ") {
@@ -36,6 +44,7 @@ export default function App(): JSX.Element {
           localStorage.clear();
           localStorage.setItem("numero", information.jour);
           localStorage.setItem("battery", "100");
+          localStorage.setItem("lang", lang);
           setBattery("100");
         }
       }
@@ -44,6 +53,13 @@ export default function App(): JSX.Element {
       }
       getData();
     }
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
   }, []);
   return (
     <>
@@ -61,12 +77,26 @@ export default function App(): JSX.Element {
             setRound,
             displayWait,
             setDisplayWait,
+            start,
+            setStart,
+            finish,
+            setFinish,
+            lang,
+            setLang,
           }}
         >
-          <Main>
-            <ViewLeft />
-            <ViewRight />
-          </Main>
+          <div ref={ref}>
+            {width > 800 ? (
+              <Main>
+                <ViewLeft />
+                <ViewRight />
+              </Main>
+            ) : (
+              <Main>
+                <ViewPhone />
+              </Main>
+            )}
+          </div>
         </MainContext.Provider>
       ) : (
         <></>

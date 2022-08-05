@@ -12,7 +12,7 @@ import { AnimWait } from "src/styled";
 import Icone_Rechargle from "src/composent/Left/PhoneBack/Game/Icone";
 
 export default function ViewGame({ height }: { height: number }): JSX.Element {
-  const { displayWait, message } = useContext(MainContext);
+  const { displayWait, message, lang } = useContext(MainContext);
   return (
     <Game style={{ height: 0.6 * height }}>
       <IntroductionMessage />
@@ -27,7 +27,7 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
           } else if (keyName.includes("numero")) {
             return;
           } else if (keyName.includes("win")) {
-            if (localStorage.getItem("win")) {
+            if (localStorage.getItem(keyName) === "true") {
               return <FinillyMessage key={keyName} win={true} />;
             } else {
               return <FinillyMessage key={keyName} win={false} />;
@@ -59,7 +59,19 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
             );
           } else if (keyName.includes("messageLaugh")) {
             return (
-              <DisplayIndice key={keyName} value="Ah Ah ! Not this one 😯" />
+              <>
+                {lang === "us" ? (
+                  <DisplayIndice
+                    key={keyName}
+                    value="Ah Ah ! Not this one 😯"
+                  />
+                ) : (
+                  <DisplayIndice
+                    key={keyName}
+                    value="Ah Ah ! Pas cette fois 😯"
+                  />
+                )}
+              </>
             );
           } else if (keyName.includes("battery")) {
             return;

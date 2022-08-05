@@ -26,4 +26,6 @@ export const MainContext = React.createContext<MainContextType>({
   setStart: () => {},
   finish: false,
   setFinish: () => {},
+  lang: "",
+  setLang: () => {},
 });

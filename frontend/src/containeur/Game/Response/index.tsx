@@ -18,6 +18,7 @@ export default function EnterResponse(): JSX.Element {
     setRound,
     setDisplayWait,
     setFinish,
+    lang,
   } = useContext(MainContext);
 
   const inputRef: React.MutableRefObject<any> = useRef(null);
@@ -123,16 +124,29 @@ export default function EnterResponse(): JSX.Element {
     <>
       <div style={{ display: "flex", height: "6.25%", marginTop: "4%" }}>
         <Response>
-          <input
-            placeholder="Type yours answer ..."
-            autoComplete="off"
-            maxLength={25}
-            value={message}
-            onChange={(e) => {
-              OnToogleMessage(e.target.value);
-            }}
-            ref={inputRef}
-          />
+          {lang === "us" ? (
+            <input
+              placeholder="Type yours answer ..."
+              autoComplete="off"
+              maxLength={25}
+              value={message}
+              onChange={(e) => {
+                OnToogleMessage(e.target.value);
+              }}
+              ref={inputRef}
+            />
+          ) : (
+            <input
+              placeholder="Ecrit ta réponse ..."
+              autoComplete="off"
+              maxLength={25}
+              value={message}
+              onChange={(e) => {
+                OnToogleMessage(e.target.value);
+              }}
+              ref={inputRef}
+            />
+          )}
         </Response>
         <Icone_Rechargle image="iconeInvit.png" height="100%" />
       </div>

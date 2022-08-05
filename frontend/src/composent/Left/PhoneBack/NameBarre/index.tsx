@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
 import { Name, IconsName, ColumnOnline, TextOnline } from "src/styled";
 
 export default function NameBarre(): JSX.Element {
+  const { lang } = useContext(MainContext);
+
   return (
     <Name>
       <IconsName>
@@ -10,7 +13,7 @@ export default function NameBarre(): JSX.Element {
       <ColumnOnline>
         Rechargle n°{"1"}
         <TextOnline>
-          <span>🟢</span> Online
+          <span>🟢</span> {lang === "us" ? "Online" : "Connecté"}
         </TextOnline>
       </ColumnOnline>
     </Name>

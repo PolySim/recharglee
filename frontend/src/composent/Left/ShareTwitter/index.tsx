@@ -13,6 +13,7 @@ export default function ShareOnTwitter({
       style={{ width: `${height * 0.26}px` }}
     >
       <div>Share on Twitter</div>
+
       <img src={require("./logo.png")} alt="logo Twitter" height="100%" />
     </Twitter>
   );

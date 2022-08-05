@@ -37,6 +37,8 @@ export type MainContextType = {
   setStart: React.Dispatch<React.SetStateAction<boolean>>;
   finish: boolean;
   setFinish: React.Dispatch<React.SetStateAction<boolean>>;
+  lang: string;
+  setLang: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type ViewMessageProps = {

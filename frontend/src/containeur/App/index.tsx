@@ -20,6 +20,9 @@ export default function App(): JSX.Element {
   const [displayWait, setDisplayWait] = useState<boolean>(false);
   const [start, setStart] = useState<boolean>(true);
   const [finish, setFinish] = useState<boolean>(false);
+  const [lang, setLang] = useState<string>(
+    localStorage.getItem("lang") || "fr"
+  );
 
   const OnToogleMessage = (value: string) => {
     if (value.slice(-2) === "  ") {
@@ -41,6 +44,7 @@ export default function App(): JSX.Element {
           localStorage.clear();
           localStorage.setItem("numero", information.jour);
           localStorage.setItem("battery", "100");
+          localStorage.setItem("lang", lang);
           setBattery("100");
         }
       }
@@ -77,6 +81,8 @@ export default function App(): JSX.Element {
             setStart,
             finish,
             setFinish,
+            lang,
+            setLang,
           }}
         >
           <div ref={ref}>

@@ -5,10 +5,10 @@ import { Hier } from "src/styled";
 const cleAPI = process.env.REACT_APP_API_URL;
 
 export default function Yesterday(): JSX.Element {
-  const { info, image } = useContext(MainContext);
+  const { info, image, lang } = useContext(MainContext);
   return (
     <Hier>
-      <p>Yesterday answer</p>
+      <p>{lang === "us" ? "Yesterday answer" : "Réponse d'hier"}</p>
       <img src={`${cleAPI}/api/image2/${info.numero}`} alt={image.alt2} />
       <p>{image.alt2}</p>
     </Hier>

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
 import { FirstMessage } from "src/styled";
 import Icone_Rechargle from "src/composent/Left/PhoneBack/Game/Icone/index";
 
 export default function IntroductionMessage(): JSX.Element {
+  const { lang } = useContext(MainContext);
   return (
     <div style={{ display: "flex" }}>
       <Icone_Rechargle image="iconeRechargle.png" height="100%" />
-      <FirstMessage>Hi ! Do u know who's that ? ⬇️⬇️</FirstMessage>
+      {lang === "us" ? (
+        <FirstMessage>Hi ! Do u know who's that ? ⬇️⬇️</FirstMessage>
+      ) : (
+        <FirstMessage>Hey ! Tu sais qui ça peut être ? ⬇️⬇️</FirstMessage>
+      )}
     </div>
   );
 }

@@ -229,7 +229,9 @@ export const Barre = styled.div`
 `;
 
 export const Hour = styled.div`
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const Battery = styled.div`
@@ -631,7 +633,7 @@ export const Start = styled.button`
 
   h2 {
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
     font-family: "Julius Sans One", sans-serif;
@@ -640,9 +642,9 @@ export const Start = styled.button`
     z-index: 10;
   }
 
-  div:nth-of-type(1) {
+  > div:nth-of-type(1) {
     position: absolute;
-    top: 40%;
+    top: 33%;
     left: 50%;
     transform: translateX(-50%);
     background-color: #a9ca7c;
@@ -676,6 +678,50 @@ export const Start = styled.button`
       color: #f9faf6;
       font-family: "M PLUS 2", sans-serif;
       font-weight: bold;
+    }
+  }
+
+  > :nth-of-type(2) {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 63%;
+    width: 100%;
+    height: 12.5%;
+
+    div:nth-of-type(1) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #e2cc93;
+      margin-right: 10%;
+      width: 25%;
+      height: 100%;
+      border-radius: 15px;
+      cursor: pointer;
+      z-index: 10;
+
+      img {
+        width: 60%;
+        height: auto;
+      }
+    }
+
+    div:nth-of-type(2) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #da8697;
+      width: 25%;
+      height: 100%;
+      border-radius: 15px;
+      cursor: pointer;
+      z-index: 10;
+
+      img {
+        width: 60%;
+        height: auto;
+      }
     }
   }
 `;

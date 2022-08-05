@@ -444,6 +444,7 @@ export const ButtonSubmit = styled.div`
   margin: 1% 7% 0 auto;
   height: 4.5%;
   width: 15%;
+  animation: 3s infinite temp;
 
   img {
     height: 100%;
@@ -650,6 +651,12 @@ export const Start = styled.button`
     border-radius: 15px;
     z-index: 10;
     cursor: pointer;
+    transition: transform 0.3s ease-in;
+
+    :hover {
+      transform: scale(1.2) translateX(-40%);
+      transition: transform 0.5s ease-in;
+    }
 
     img {
       position: absolute;

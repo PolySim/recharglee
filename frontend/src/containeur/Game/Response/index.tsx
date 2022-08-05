@@ -5,7 +5,11 @@ import { MainContext } from "src/context";
 import { ButtonSubmit } from "src/styled";
 import changeInfo from "src/API/changeInfo";
 
-export default function EnterResponse(): JSX.Element {
+export default function EnterResponse({
+  setFinish,
+}: {
+  setFinish: React.Dispatch<React.SetStateAction<boolean>>;
+}): JSX.Element {
   const {
     image,
     info,
@@ -60,6 +64,7 @@ export default function EnterResponse(): JSX.Element {
       changeInfo(newInfo);
       localStorage.setItem(`${round}win`, "false");
       setRound(round + 1);
+      setFinish(true);
     } else {
       addIndice();
       OnToogleMessage("");
@@ -76,6 +81,7 @@ export default function EnterResponse(): JSX.Element {
     setRound(round + 1);
     localStorage.setItem(`${round}win`, "true");
     setRound(round + 1);
+    setFinish(true);
   };
 
   const checkResponse = () => {

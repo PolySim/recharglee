@@ -11,7 +11,13 @@ import DisplayIndice from "src/composent/Left/PhoneBack/Game/Indice";
 import { AnimWait } from "src/styled";
 import Icone_Rechargle from "src/composent/Left/PhoneBack/Game/Icone";
 
-export default function ViewGame({ height }: { height: number }): JSX.Element {
+export default function ViewGame({
+  height,
+  setFinish,
+}: {
+  height: number;
+  setFinish: React.Dispatch<React.SetStateAction<boolean>>;
+}): JSX.Element {
   const { displayWait, message } = useContext(MainContext);
   return (
     <Game style={{ height: 0.6 * height }}>
@@ -27,7 +33,7 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
           } else if (keyName.includes("numero")) {
             return;
           } else if (keyName.includes("win")) {
-            if (localStorage.getItem("win")) {
+            if (localStorage.getItem(keyName) === "true") {
               return <FinillyMessage key={keyName} win={true} />;
             } else {
               return <FinillyMessage key={keyName} win={false} />;
@@ -94,7 +100,7 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
       ) : displayWait ? (
         <></>
       ) : (
-        <EnterResponse />
+        <EnterResponse setFinish={setFinish} />
       )}
     </Game>
   );

@@ -33,10 +33,21 @@ export type MainContextType = {
   setRound: React.Dispatch<React.SetStateAction<number>>;
   displayWait: boolean;
   setDisplayWait: React.Dispatch<React.SetStateAction<boolean>>;
+  start: boolean;
+  setStart: React.Dispatch<React.SetStateAction<boolean>>;
+  finish: boolean;
+  setFinish: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type ViewMessageProps = {
   color: string;
   message: string;
   perte: string;
+};
+
+export type PhoneBackProps = {
+  start: boolean;
+  setStart: React.Dispatch<React.SetStateAction<boolean>>;
+  finish: boolean;
+  setFinish: React.Dispatch<React.SetStateAction<boolean>>;
 };

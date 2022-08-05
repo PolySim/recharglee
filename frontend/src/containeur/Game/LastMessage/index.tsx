@@ -1,9 +1,11 @@
-import React from "react";
-import { LastMessage } from "src/styled";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
+import { LastMessage, ImageBack } from "src/styled";
 import Icone_Rechargle from "src/composent/Left/PhoneBack/Game/Icone";
 import DeliveredAt from "src/containeur/Game/delivered";
 
 export default function FinillyMessage({ win }: { win: boolean }): JSX.Element {
+  const { setFinish } = useContext(MainContext);
   return (
     <>
       <div
@@ -32,6 +34,11 @@ export default function FinillyMessage({ win }: { win: boolean }): JSX.Element {
         )}
       </div>
       <DeliveredAt num={2} />
+      <ImageBack
+        src={require("./back.png")}
+        alt="back"
+        onClick={() => setFinish(true)}
+      />
     </>
   );
 }

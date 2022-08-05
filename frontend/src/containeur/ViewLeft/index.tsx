@@ -8,6 +8,9 @@ export default function ViewLeft(): JSX.Element {
   const ref = useRef<HTMLHeadingElement>(null);
   const [height, setHeight] = useState<number>(0);
 
+  const [start, setStart] = useState<boolean>(true);
+  const [finish, setFinish] = useState<boolean>(false);
+
   useEffect(() => {
     const handleResize = () => {
       if (ref.current) {

@@ -18,6 +18,8 @@ export default function App(): JSX.Element {
   const [battery, setBattery] = useState<string>("100");
   const [round, setRound] = useState<number>(0);
   const [displayWait, setDisplayWait] = useState<boolean>(false);
+  const [start, setStart] = useState<boolean>(true);
+  const [finish, setFinish] = useState<boolean>(false);
 
   const OnToogleMessage = (value: string) => {
     if (value.slice(-2) === "  ") {
@@ -76,6 +78,10 @@ export default function App(): JSX.Element {
             setRound,
             displayWait,
             setDisplayWait,
+            start,
+            setStart,
+            finish,
+            setFinish,
           }}
         >
           <div ref={ref}>

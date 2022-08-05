@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
 import { Back } from "src/styled";
 import TopBarre from "src/composent/Left/PhoneBack/TopBarre/index";
 import NameBarre from "src/composent/Left/PhoneBack/NameBarre/index";
@@ -7,19 +8,18 @@ import StartGame from "src/composent/Left/PhoneBack/Start";
 import ViewFinishGame from "src/composent/Left/PhoneBack/Finish/index";
 
 export default function PhoneBack({ height }: { height: number }): JSX.Element {
-  const [start, setStart] = useState<boolean>(true);
-  const [finish, setFinish] = useState<boolean>(false);
+  const { start, finish } = useContext(MainContext);
   return (
-    <Back style={{ width: `${height * 0.35}px` }}>
+    <Back style={{ width: `${height * 0.353}px` }}>
       {start ? (
-        <StartGame setStart={setStart} />
+        <StartGame />
       ) : finish ? (
-        <ViewFinishGame setFinish={setFinish} />
+        <ViewFinishGame />
       ) : (
         <>
           <TopBarre />
           <NameBarre />
-          <ViewGame height={height} setFinish={setFinish} />
+          <ViewGame height={height} />
         </>
       )}
     </Back>

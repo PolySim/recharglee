@@ -198,6 +198,7 @@ export const Back = styled.div`
   @media screen and (max-width: 800px) {
     height: 76vh;
     top: 4.35%;
+    font-family: "M PLUS 2", sans-serif;
   }
 `;
 
@@ -605,7 +606,7 @@ export const AnimWait = styled.div`
   border: 2px solid black;
   border-radius: 10%;
   left: 13%;
-  font-size: min(0.7vw, 1.5vh);
+  font-size: min(0.9vw, 1.5vh);
 
   span:nth-of-type(1) {
     animation: wait 1.4s infinite ease-in-out;
@@ -677,4 +678,100 @@ export const Start = styled.button`
       font-weight: bold;
     }
   }
+`;
+
+export const Lose = styled.div`
+  position: relative;
+  background-color: #263238;
+  height: 100%;
+  width: 100%;
+
+  div:nth-of-type(1) {
+    position: absolute;
+    top: 7%;
+    left: 9%;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  h2 {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: normal;
+    font-size: 5.3vh;
+    z-index: 10;
+    color: #f9faf6;
+  }
+
+  div:nth-of-type(2) {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 12%;
+    width: 100%;
+
+    img {
+      width: auto;
+    }
+  }
+
+  div:nth-of-type(3) {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "M PLUS 2", sans-serif;
+    font-size: 5vh;
+    color: #f9faf6;
+    text-align: center;
+    width: 35%;
+
+    ::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 5px;
+      background-color: #5a1aab;
+    }
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 19%;
+    border: 2px solid #5a1aab;
+    z-index: 10;
+    cursor: pointer;
+
+    img {
+      height: 58%;
+      width: auto;
+    }
+
+    p {
+      color: #f9faf6;
+      font-size: 2.5vh;
+    }
+  }
+`;
+
+export const ImageBack = styled.img`
+  transform: rotate(180deg);
+  position: relative;
+  left: 75%;
+  top: -3%;
+  cursor: pointer;
 `;

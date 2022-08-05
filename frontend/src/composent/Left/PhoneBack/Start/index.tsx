@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MainContext } from "src/context";
 import { Start } from "src/styled";
 
-export default function StartGame({
-  setStart,
-}: {
-  setStart: React.Dispatch<React.SetStateAction<boolean>>;
-}): JSX.Element {
+export default function StartGame(): JSX.Element {
+  const { setStart } = useContext(MainContext);
   return (
     <Start>
       <h2>Rechargle</h2>

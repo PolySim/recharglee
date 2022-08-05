@@ -5,11 +5,7 @@ import { MainContext } from "src/context";
 import { ButtonSubmit } from "src/styled";
 import changeInfo from "src/API/changeInfo";
 
-export default function EnterResponse({
-  setFinish,
-}: {
-  setFinish: React.Dispatch<React.SetStateAction<boolean>>;
-}): JSX.Element {
+export default function EnterResponse(): JSX.Element {
   const {
     image,
     info,
@@ -21,6 +17,7 @@ export default function EnterResponse({
     round,
     setRound,
     setDisplayWait,
+    setFinish,
   } = useContext(MainContext);
 
   const inputRef: React.MutableRefObject<any> = useRef(null);

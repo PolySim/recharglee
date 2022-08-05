@@ -34,7 +34,7 @@ export default function ViewPhone(): JSX.Element {
       </div>
       <div ref={ref} style={{ height: "90vh", position: "relative" }}>
         <Iphone src={require("./iphone.png")} alt="iphone" />
-        <PhoneBack height={1.1 * height} />
+        <PhoneBack height={1.125 * height} />
         <ShareOnTwitter height={1.2 * height} />
       </div>
       <Rules>

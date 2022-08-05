@@ -22,4 +22,8 @@ export const MainContext = React.createContext<MainContextType>({
   setRound: () => {},
   displayWait: false,
   setDisplayWait: () => {},
+  start: true,
+  setStart: () => {},
+  finish: false,
+  setFinish: () => {},
 });

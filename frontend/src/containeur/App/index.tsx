@@ -11,7 +11,7 @@ import ViewPhone from "src/composent/PhoneResponsive";
 
 export default function App(): JSX.Element {
   const ref = useRef<HTMLHeadingElement>(null);
-  const [width, setWidth] = useState<number>(0);
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const [image, setImage] = useState<ImageAPI>();
   const [info, setInfo] = useState<InfoAPI>();
   const [message, setMessage] = useState<string>("");
@@ -53,13 +53,8 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     const handleResize = () => {
-      if (ref.current) {
-        setWidth(ref.current.offsetWidth);
-      }
+      setWidth(window.innerWidth);
     };
-    if (width === 0) {
-      handleResize();
-    }
     window.addEventListener("resize", handleResize);
   }, []);
   return (
@@ -85,7 +80,7 @@ export default function App(): JSX.Element {
           }}
         >
           <div ref={ref}>
-            {width > 800 || width === 0 ? (
+            {width > 800 ? (
               <Main>
                 <ViewLeft />
                 <ViewRight />

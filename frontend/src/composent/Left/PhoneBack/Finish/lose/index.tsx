@@ -16,7 +16,10 @@ export default function ViewLose(): JSX.Element {
         <img src={require("./fantoms.png")} alt="fantoms" />
       </div>
       <div>{localStorage.getItem("battery")}%</div>
-      <a href="">
+      <a
+        href="https://twitter.com/intent/tweet?text=Can%20you%20be%20better%20than%20me%20today%20?%20Challenge%20me%20now%20!%20🔋%20🔌%20➡️%20https://www.rechargle.com"
+        target="_blank"
+      >
         <img src={require("./share.png")} alt="share" />
         <p>SHARE</p>
       </a>

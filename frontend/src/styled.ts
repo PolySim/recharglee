@@ -606,7 +606,7 @@ export const AnimWait = styled.div`
   border: 2px solid black;
   border-radius: 10%;
   left: 13%;
-  font-size: min(0.9vw, 1.5vh);
+  font-size: 1.5vh;
 
   span:nth-of-type(1) {
     animation: wait 1.4s infinite ease-in-out;
@@ -727,6 +727,7 @@ export const Lose = styled.div`
     left: 50%;
     transform: translateX(-50%);
     font-family: "M PLUS 2", sans-serif;
+    font-weight: bold;
     font-size: 5vh;
     color: #f9faf6;
     text-align: center;
@@ -754,6 +755,7 @@ export const Lose = styled.div`
     height: 19%;
     border: 2px solid #5a1aab;
     z-index: 10;
+    text-decoration: none;
     cursor: pointer;
 
     img {
@@ -774,4 +776,93 @@ export const ImageBack = styled.img`
   left: 75%;
   top: -3%;
   cursor: pointer;
+`;
+
+export const Win = styled.div`
+  background-color: #f9faf6;
+  height: 100%;
+  width: 100%;
+
+  div:nth-of-type(1) {
+    position: absolute;
+    top: 7%;
+    left: 9%;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  h2 {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: normal;
+    font-size: 5.3vh;
+    z-index: 10;
+    color: #0e0d0d;
+  }
+
+  div:nth-of-type(2) {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 18%;
+    width: 100%;
+
+    img {
+      width: auto;
+    }
+  }
+
+  div:nth-of-type(3) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "M PLUS 2", sans-serif;
+    font-size: 5.5vh;
+    font-weight: bold;
+    color: #0e0d0d;
+    text-align: center;
+    width: 45%;
+
+    ::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 5px;
+      background-color: #6bb33b;
+    }
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 68%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 19%;
+    border: 2px solid #0e0d0d;
+    z-index: 10;
+    cursor: pointer;
+    text-decoration: none;
+
+    img {
+      height: 58%;
+      width: auto;
+    }
+
+    p {
+      color: #0e0d0d;
+      font-size: 2.5vh;
+    }
+  }
 `;

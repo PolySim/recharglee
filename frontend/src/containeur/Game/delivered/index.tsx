@@ -1,18 +1,7 @@
-import React, { useRef, useEffect, useContext } from "react";
-import { MainContext } from "src/context";
+import React from "react";
 import { Delivered } from "src/styled";
 
 export default function DeliveredAt({ num }: { num: number }): JSX.Element {
-  const deliveredRef: React.MutableRefObject<any> = useRef(null);
-
-  const { round } = useContext(MainContext);
-
-  useEffect(() => {
-    if (deliveredRef.current && round !== 0) {
-      deliveredRef.current.scrollIntoView();
-    }
-  });
-
   const today = new Date();
   let time: string = `${
     today.getHours().toString().length != 1
@@ -28,5 +17,5 @@ export default function DeliveredAt({ num }: { num: number }): JSX.Element {
   } else {
     localStorage.setItem(`delivered${num}`, time);
   }
-  return <Delivered ref={deliveredRef}>Delivered at {time}</Delivered>;
+  return <Delivered>Delivered at {time}</Delivered>;
 }

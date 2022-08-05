@@ -635,6 +635,7 @@ export const Start = styled.button`
     font-family: "Julius Sans One", sans-serif;
     font-weight: normal;
     font-size: 5.3vh;
+    z-index: 10;
   }
 
   div:nth-of-type(1) {

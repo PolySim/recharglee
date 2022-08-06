@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { MainContext } from "src/context";
-import { H1, Teaser, LineFoundYesterday, Iphone, Rules } from "src/styled";
+import {
+  H1,
+  Teaser,
+  LineFoundYesterday,
+  Iphone,
+  RulesResponsive,
+  Pub,
+} from "src/styled";
 import Already from "src/composent/Right/Found/index";
 import Yesterday from "src/composent/Right/Yesterday/index";
 import PhoneBack from "src/composent/Left/PhoneBack";
@@ -26,7 +33,7 @@ export default function ViewPhone(): JSX.Element {
 
   return (
     <>
-      <div style={{ backgroundColor: "#fff", height: "40vh" }}>
+      <div style={{ backgroundColor: "#fff", height: "max(45vh)" }}>
         <H1>RECHARGLE</H1>
         <Teaser>
           {lang === "us"
@@ -40,10 +47,13 @@ export default function ViewPhone(): JSX.Element {
       </div>
       <div ref={ref} style={{ height: "90vh", position: "relative" }}>
         <Iphone src={require("./iphone.png")} alt="iphone" />
-        <PhoneBack height={1.125 * height} />
+        <PhoneBack height={1.11 * height} />
         <ShareOnTwitter height={1.2 * height} />
       </div>
-      <Rules>
+      <Pub>
+        <img src={require("./pub.png")} alt="pub" />
+      </Pub>
+      <RulesResponsive>
         <p>{lang === "us" ? "Game rules" : "Règles du jeu"}</p>
         {lang === "us" ? (
           <>
@@ -87,7 +97,7 @@ export default function ViewPhone(): JSX.Element {
             </p>
           </>
         )}
-      </Rules>
+      </RulesResponsive>
       <CreateFooter />
     </>
   );

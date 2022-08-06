@@ -7,6 +7,7 @@ export const Left = styled.div`
   align-items: center;
   flex-basis: 50%;
   height: 100%;
+  min-width: 50%;
   font-family: "M PLUS 2", sans-serif;
 `;
 
@@ -16,6 +17,7 @@ export const Right = styled.div`
   justify-content: space-around;
   flex-basis: 50%;
   height: 100%;
+  max-width: 50%;
 `;
 
 export const Main = styled.main`
@@ -61,7 +63,7 @@ export const H1 = styled.h1`
 export const Teaser = styled.p`
   text-align: center;
   color: #0e0d0d;
-  margin: 5% 10% 0;
+  margin: 0 10% 0;
   font-size: min(2.1vw, 3.6vh);
   font-weight: bold;
 
@@ -71,21 +73,103 @@ export const Teaser = styled.p`
   }
 `;
 
+export const GameRules = styled.div`
+  position: relative;
+  top: 5%;
+
+  p:first-child {
+    text-align: center;
+    font-size: min(2.2vw, 2.7vh);
+    margin-bottom: 2%;
+  }
+
+  > div:nth-of-type(1) {
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    margin-bottom: 4%;
+    width: 100%;
+
+    div:nth-of-type(2n + 1) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 1%;
+      height: 100%;
+      width: 4%;
+      background-color: #0c79c2;
+      color: #f9faf6;
+      font-family: "M PLUS 2", sans-serif;
+      cursor: pointer;
+      border-radius: 20%;
+    }
+
+    div:nth-of-type(2) {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 20%;
+      width: 3%;
+      margin-left: 1%;
+      background-color: #263238;
+      border-radius: 15px;
+    }
+
+    img {
+      cursor: pointer;
+    }
+
+    img:nth-of-type(2) {
+      margin-left: 1%;
+      transform: rotate(180deg);
+    }
+  }
+`;
+
 export const Rules = styled.div`
-  margin: 4% 15% 0px 15%;
+  display: flex;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   color: #0e0d0d;
   text-align: center;
   font-size: min(2vw, 2.4vh);
+  overflow-x: hidden;
+  width: 80%;
 
   p:first-child {
     font-size: min(2.2vw, 2.7vh);
   }
 
+  p:nth-of-type(n) {
+    min-width: 100%;
+    transition: transform 0.7s ease-out;
+  }
+`;
+
+export const RulesResponsive = styled.div`
+  display: grid;
+  grid-template-columns: 40% 40%;
+  row-gap: 25px;
+  column-gap: 25px;
+  justify-content: center;
+  width: 100%;
+  background-color: #fefcfc;
+  margin: 0;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  font-size: 3vw;
+  text-align: center;
   p {
-    margin-bottom: 20px;
+    margin-bottom: 0;
+  }
+  p:first-child {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    font-size: 3.5vw;
   }
 
-  p:nth-child(2)::after {
+  p:nth-of-type(n)::after {
     content: "";
     margin-top: 5px;
     display: block;
@@ -95,71 +179,27 @@ export const Rules = styled.div`
     transition: transform 0.2s ease-in-out;
   }
 
-  p:nth-child(2):hover::after {
+  p:nth-of-type(n):hover::after {
     transform: scale(1);
-  }
-  p:nth-child(3)::after {
-    content: "";
-    margin-top: 5px;
-    display: block;
-    height: 1.5px;
-    background: #0e0d0d;
-    transform: scale(0);
-    transition: transform 0.2s ease-in-out;
   }
 
-  p:nth-child(3):hover::after {
-    transform: scale(1);
+  p:nth-of-type(1)::after {
+    height: 0px;
   }
-  p:nth-child(4)::after {
-    content: "";
-    margin-top: 5px;
-    display: block;
-    height: 1.5px;
-    background: #0e0d0d;
-    transform: scale(0);
-    transition: transform 0.2s ease-in-out;
-  }
+`;
 
-  p:nth-child(4):hover::after {
-    transform: scale(1);
-  }
-  p:nth-child(5)::after {
-    content: "";
-    margin-top: 5px;
-    display: block;
-    height: 1.5px;
-    background: #0e0d0d;
-    transform: scale(0);
-    transition: transform 0.2s ease-in-out;
-  }
+export const Pub = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
 
-  p:nth-child(5):hover::after {
-    transform: scale(1);
+  img {
+    width: 80%;
   }
 
   @media screen and (max-width: 800px) {
-    display: grid;
-    grid-template-columns: 40% 40%;
-    row-gap: 25px;
-    column-gap: 25px;
-    justify-content: center;
-    width: 100%;
-    background-color: #fefcfc;
-    margin: 0;
-    padding-top: 5%;
-    padding-bottom: 5%;
-    font-size: 3vw;
-
-    p {
-      margin-bottom: 0;
-    }
-
-    p:first-child {
-      grid-column-start: 1;
-      grid-column-end: 3;
-      font-size: 3.5vw;
-    }
+    margin-bottom: 5%;
+    margin-top: 2%;
   }
 `;
 
@@ -524,7 +564,6 @@ export const LineFoundYesterday = styled.div`
   display: flex;
   justify-content: space-evenly;
   font-size: min(2.1vw, 2.6vh);
-  margin-top: 8%;
   height: 15vh;
 
   @media screen and (max-width: 800px) {

@@ -21,7 +21,7 @@ export default function App(): JSX.Element {
   const [start, setStart] = useState<boolean>(true);
   const [finish, setFinish] = useState<boolean>(false);
   const [lang, setLang] = useState<string>(
-    localStorage.getItem("lang") || "fr"
+    localStorage.getItem("lang") || "us"
   );
 
   const OnToogleMessage = (value: string) => {

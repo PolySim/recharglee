@@ -11,7 +11,7 @@ export default function IntroductionMessage(): JSX.Element {
       {lang === "us" ? (
         <FirstMessage>Hi ! Do u know who's that ? ⬇️⬇️</FirstMessage>
       ) : (
-        <FirstMessage>Hey ! Tu sais qui ça peut être ? ⬇️⬇️</FirstMessage>
+        <FirstMessage>Hey ! A qui cele te fait penser ? ? ⬇️⬇️</FirstMessage>
       )}
     </div>
   );

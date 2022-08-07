@@ -59,19 +59,14 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
             );
           } else if (keyName.includes("messageLaugh")) {
             return (
-              <>
-                {lang === "us" ? (
-                  <DisplayIndice
-                    key={keyName}
-                    value="Ah Ah ! Not this one 😯"
-                  />
-                ) : (
-                  <DisplayIndice
-                    key={keyName}
-                    value="Ah Ah ! Pas cette fois 😯"
-                  />
-                )}
-              </>
+              <DisplayIndice
+                key={keyName}
+                value={
+                  lang === "us"
+                    ? "Ah Ah ! Not this one 😯"
+                    : "Ah Ah ! Pas cette fois 😯"
+                }
+              />
             );
           } else if (keyName.includes("battery")) {
             return;

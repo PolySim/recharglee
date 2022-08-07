@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { MainContext } from "src/context";
 import {
   Right,
@@ -36,10 +36,11 @@ export default function ViewRight(): JSX.Element {
     }
   };
 
-  // setInterval(() => {
-  //   ontoggleRule(true);
-  // }, 10000);
-  console.log(rule);
+  useEffect(() => {
+    const interval = setInterval(() => ontoggleRule(true), 8000);
+    return () => clearInterval(interval);
+  }, [rule]);
+
   return (
     <Right>
       <H1>RECHARGLE</H1>

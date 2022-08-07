@@ -8,9 +8,9 @@ export default function Already(): JSX.Element {
     <Found>
       {lang === "us" ? (
         <>
-          <p>Already found by :</p>
+          <p>Today :</p>
           <p>
-            <span>{info.win}</span> people
+            <span>{info.win}</span> people found
           </p>
           <p>
             <span>{info.lose}</span> have failed
@@ -18,14 +18,14 @@ export default function Already(): JSX.Element {
         </>
       ) : (
         <>
-          <p>Déjà trouvée par :</p>
+          <p>Aujourd'hui :</p>
           <p>
             <span>{info.win}</span>{" "}
-            {parseInt(info.win) > 1 ? "personnes" : "personne"}
+            {parseInt(info.win) === 1 ? "a réussi" : "ont réussi"}
           </p>
           <p>
             <span>{info.lose}</span>{" "}
-            {parseInt(info.lose) > 1 ? "ont échouées" : "a échouée"}
+            {parseInt(info.lose) === 1 ? "a échouée" : "ont échouées"}
           </p>
         </>
       )}

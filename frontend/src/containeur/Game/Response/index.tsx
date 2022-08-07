@@ -39,6 +39,7 @@ export default function EnterResponse(): JSX.Element {
       localStorage.setItem(`${round + 1}indice`, image.indice2);
     }
     setRound(round + 1);
+    localStorage.setItem("round", (round + 1).toString());
   };
 
   const badResponse = () => {
@@ -55,6 +56,7 @@ export default function EnterResponse(): JSX.Element {
       : localStorage.setItem("battery", "0");
     localStorage.setItem(`${round}responseFalse${perte}`, message);
     setRound(round + 1);
+    localStorage.setItem("round", (round + 1).toString());
     if (parseInt(battery) - perte <= 0) {
       let newInfo = info;
       newInfo.lose = (parseInt(newInfo.lose) + 1).toString();
@@ -62,6 +64,7 @@ export default function EnterResponse(): JSX.Element {
       changeInfo(newInfo);
       localStorage.setItem(`${round}win`, "false");
       setRound(round + 1);
+      localStorage.setItem("round", (round + 1).toString());
       setFinish(true);
     } else {
       addIndice();
@@ -77,8 +80,10 @@ export default function EnterResponse(): JSX.Element {
     OnToogleMessage("");
     localStorage.setItem(`${round}responseWin`, message);
     setRound(round + 1);
+    localStorage.setItem("round", (round + 1).toString());
     localStorage.setItem(`${round}win`, "true");
     setRound(round + 1);
+    localStorage.setItem("round", (round + 1).toString());
     setFinish(true);
   };
 

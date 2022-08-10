@@ -78,8 +78,8 @@ export default function ViewPhone(): JSX.Element {
         ) : (
           <>
             <p>
-              1) Trouve à quelle <strong>célébrité</strong> correspond la photo
-              avant que la <strong>battery</strong> soit à 0
+              1) Trouve à quelle <strong>célébrité</strong> correspond l'image
+              avant que ta <strong>batterie</strong> soit à 0%
             </p>
             <p>
               2) Pour chaque <strong>erreur</strong> tu <strong>perds</strong>{" "}
@@ -87,13 +87,13 @@ export default function ViewPhone(): JSX.Element {
               batterie
             </p>
             <p>
-              3) Tu obtiens deux nouveaux <strong>indices</strong> quand ta
-              batterie tombe en dessous de <strong>60</strong> et{" "}
-              <strong>30%</strong>
+              3) Tu obtiens <strong>deux</strong> nouveaux{" "}
+              <strong>indices</strong> à <strong>60</strong> et{" "}
+              <strong>30%</strong> de batterie
             </p>
             <p>
-              4) La batterie se recharge toutes les <strong>24 heures</strong>{" "}
-              et une nouvelle photo apparait
+              4) Ta batterie se recharge toutes les <strong>24 heures</strong>{" "}
+              et une nouvelle énigme apparait
             </p>
           </>
         )}

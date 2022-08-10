@@ -63,8 +63,8 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
                 key={keyName}
                 value={
                   lang === "us"
-                    ? "Ah Ah ! Not this one 😯"
-                    : "Ah Ah ! Pas cette fois 😯"
+                    ? "Bahah ! Not this one 😯"
+                    : "Bahah ! Pas cette fois 😯"
                 }
               />
             );

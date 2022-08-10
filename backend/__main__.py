@@ -1,7 +1,7 @@
 import flask
 import os
 import sys
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, render_template
 from flask_cors import CORS
 import json
 from datetime import datetime, timedelta
@@ -24,8 +24,12 @@ FRONTEND_URL = "http://localhost:3000"
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
+picFolder = os.path.join("static")
+app.config['UPLOAD_FOLDER'] = picFolder
 
 # Response Header Wrapper function, setting appropriate header permissions
+
+
 def add_response_headers(response):
     response.headers.add('Access-Control-Allow-Origin', FRONTEND_URL)
     response.headers.add('Access-Control-Allow-Credentials', 'true')
@@ -81,24 +85,35 @@ def get_images():
         return response
 
 
-@app.route('/api/image1/<num>', methods=['GET'])
-def load_image1(num):
+@app.route('/image1', methods=['GET'])
+def load_image1():
+    # num = str(request.args.get('num'))
+    # meta_path = os.path.join(META_IMGS_PATH, num+".json")
+    # with open(meta_path, 'r') as meta_file:
+    #     meta_data = json.load(meta_file)
+    # pic1 = os.path.join(app.config['UPLOAD_FOLDER'], str(
+    #     num), str(meta_data["img1"]))
+    # return render_template("1.html", user_image=pic1)
+    num = str(request.args.get('num'))
     meta_path = os.path.join(META_IMGS_PATH, num+".json")
     with open(meta_path, 'r') as meta_file:
         meta_data = json.load(meta_file)
-    fpath = os.path.join(IMGS_PATH, str(num) + '/' + meta_data["img1"])
+    fpath = os.path.join(
+        app.config['UPLOAD_FOLDER'], str(num), meta_data["img1"])
     if not os.path.isfile(fpath) or not os.path.exists(fpath):
         raise ValueError(f"No file found: {fpath}")
 
     return send_file(fpath)
 
 
-@app.route('/api/image2/<num>', methods=['GET'])
-def load_image2(num):
+@app.route('/image2', methods=['GET'])
+def load_image2():
+    num = str(request.args.get('num'))
     meta_path = os.path.join(META_IMGS_PATH, num+".json")
     with open(meta_path, 'r') as meta_file:
         meta_data = json.load(meta_file)
-    fpath = os.path.join(IMGS_PATH, str(num) + '/' + meta_data["img2"])
+    fpath = os.path.join(
+        app.config['UPLOAD_FOLDER'], str(num), meta_data["img2"])
     if not os.path.isfile(fpath) or not os.path.exists(fpath):
         raise ValueError(f"No file found: {fpath}")
 
@@ -111,7 +126,8 @@ def update_info():
         values = request.json
         paris_day = datetime.now(pytz.timezone('Europe/Paris')).day
         if str(paris_day) != values["jour"]:
-            values = {"jour" : str(paris_day), "win" : "0", "lose" : "0", "numero" : str(int(values["numero"]))}
+            values = {"jour": str(paris_day), "win": "0", "lose": "0", "numero": str(
+                int(values["numero"]))}
             # values = {"jour" : str(paris_day), "win" : "0", "lose" : "0", "numero" : str(int(values["numero"]) + 1)}
         meta_fpath = os.path.join(META_IMGS_PATH, "info.json")
         with open(meta_fpath, 'w') as meta_filee:

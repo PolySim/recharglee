@@ -131,7 +131,7 @@ export default function EnterResponse(): JSX.Element {
         <Response>
           {lang === "us" ? (
             <input
-              placeholder="Type yours answer ..."
+              placeholder="Type yours answer..."
               autoComplete="off"
               maxLength={25}
               value={message}
@@ -142,7 +142,7 @@ export default function EnterResponse(): JSX.Element {
             />
           ) : (
             <input
-              placeholder="Ecrit ta réponse ..."
+              placeholder="Ecris ta réponse..."
               autoComplete="off"
               maxLength={25}
               value={message}

@@ -13,7 +13,7 @@ export default function CreateFooter(): JSX.Element {
         </p>
       ) : (
         <p>
-          © 2022 Rechargle — Désigné et developé par @enzo.marie &
+          © 2022 Rechargle — Designé et developpé par @enzo.marie &
           @simon.desdevises
         </p>
       )}

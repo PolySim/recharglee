@@ -25,7 +25,7 @@ export default function Already(): JSX.Element {
           </p>
           <p>
             <span>{info.lose}</span>{" "}
-            {parseInt(info.lose) === 1 ? "a échouée" : "ont échouées"}
+            {parseInt(info.lose) === 1 ? "a échouée" : "ont échoué"}
           </p>
         </>
       )}

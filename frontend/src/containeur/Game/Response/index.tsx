@@ -107,7 +107,7 @@ export default function EnterResponse(): JSX.Element {
   const checkResponse = () => {
     setDisplayWait(true);
     setTimeout(() => {
-      if (message !== image.response) {
+      if (message.toLowerCase() !== image.response) {
         badResponse();
       } else {
         goodRep();
@@ -148,7 +148,7 @@ export default function EnterResponse(): JSX.Element {
         <Response>
           {lang === "us" ? (
             <input
-              placeholder="Type yours answer..."
+              placeholder="Type your answer..."
               autoComplete="off"
               maxLength={25}
               value={message}

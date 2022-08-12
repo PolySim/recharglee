@@ -638,11 +638,8 @@ export const Perte = styled.div`
   margin: 0 6.5% 0 auto;
   font-weight: normal;
   width: 20%;
-  transform: scale(8);
   z-index: 10;
-  animation: perte 2s forwards;
-  top: -25%;
-  animation-delay: 0.7s;
+  animation-delay: 0.4s;
 `;
 
 export const AnimWait = styled.div`

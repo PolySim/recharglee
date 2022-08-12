@@ -29,14 +29,31 @@ export default function EnterResponse(): JSX.Element {
       parseInt(localStorage.getItem("battery") || "") <= 85 &&
       parseInt(localStorage.getItem("battery") || "") > 60
     ) {
-      localStorage.setItem(`${round + 1}messageLaugh`, " ");
+      if (
+        Object.keys(localStorage).some((key) => key.includes("messageLaugh"))
+      ) {
+        localStorage.setItem(`${round + 1}messageWait`, " ");
+      } else {
+        localStorage.setItem(`${round + 1}messageLaugh`, " ");
+      }
     } else if (
       parseInt(localStorage.getItem("battery") || "") <= 60 &&
       parseInt(localStorage.getItem("battery") || "") > 30
     ) {
-      localStorage.setItem(`${round + 1}indice`, image.indice1);
+      if (Object.keys(localStorage).some((key) => key.includes("indice"))) {
+        localStorage.setItem(`${round + 1}messageWait`, " ");
+      } else {
+        localStorage.setItem(`${round + 1}indice`, image.indice1);
+      }
     } else {
-      localStorage.setItem(`${round + 1}indice`, image.indice2);
+      const nbIncide = Object.keys(localStorage).filter((key) =>
+        key.includes("indice")
+      );
+      if (nbIncide.length === 2) {
+        localStorage.setItem(`${round + 1}messageWait`, " ");
+      } else {
+        localStorage.setItem(`${round + 1}indice`, image.indice2);
+      }
     }
     setRound(round + 1);
     localStorage.setItem("round", (round + 1).toString());

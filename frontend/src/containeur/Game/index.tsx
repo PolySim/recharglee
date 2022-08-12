@@ -68,6 +68,17 @@ export default function ViewGame({ height }: { height: number }): JSX.Element {
                 }
               />
             );
+          } else if (keyName.includes("messageWait")) {
+            return (
+              <DisplayIndice
+                key={keyName}
+                value={
+                  lang === "us"
+                    ? "Maybe next time 😉"
+                    : "Peut être la prochaine fois 😉"
+                }
+              />
+            );
           } else if (keyName.includes("battery")) {
             return;
           }

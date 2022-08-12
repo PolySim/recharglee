@@ -24,6 +24,7 @@ export const Main = styled.main`
   display: flex;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 
   @media screen and (max-width: 800px) {
     flex-direction: column;
@@ -535,7 +536,7 @@ export const Hier = styled.div`
   width: 50%;
 
   img {
-    height: 100%;
+    height: 80%;
     transition: transform 0.4s cubic-bezier(0.23, 1.83, 0.42, 1.19);
     z-index: 10;
   }
@@ -624,6 +625,7 @@ export const Indice = styled.div`
   font-size: max(0.6vw, 1.3vh);
   font-weight: normal;
   background-color: #f9f7f1;
+  z-index: -1;
 `;
 
 export const Perte = styled.div`
@@ -633,6 +635,11 @@ export const Perte = styled.div`
   margin: 0 6.5% 0 auto;
   font-weight: normal;
   width: 20%;
+  transform: scale(8);
+  z-index: 10;
+  animation: perte 2s forwards;
+  top: -25%;
+  animation-delay: 0.7s;
 `;
 
 export const AnimWait = styled.div`

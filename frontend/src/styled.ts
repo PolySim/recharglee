@@ -195,7 +195,9 @@ export const Pub = styled.div`
   width: 100%;
 
   img {
-    width: 80%;
+    max-height: 20vh;
+    width: auto;
+    max-width: 80%;
   }
 
   @media screen and (max-width: 800px) {
@@ -532,11 +534,12 @@ export const Hier = styled.div`
   align-items: center;
   color: #0e0d0d;
   font-weight: bold;
-  height: 100%;
+  height: 15vh;
   width: 50%;
 
   img {
     height: 80%;
+    min-height: 50px;
     transition: transform 0.4s cubic-bezier(0.23, 1.83, 0.42, 1.19);
     z-index: 10;
   }
@@ -565,7 +568,7 @@ export const LineFoundYesterday = styled.div`
   display: flex;
   justify-content: space-evenly;
   font-size: min(2.1vw, 2.6vh);
-  height: 15vh;
+  height: max-content;
 
   @media screen and (max-width: 800px) {
     margin-top: 5%;

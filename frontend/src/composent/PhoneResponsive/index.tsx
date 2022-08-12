@@ -16,13 +16,18 @@ import CreateFooter from "src/composent/Left/Footer";
 
 export default function ViewPhone(): JSX.Element {
   const ref = useRef<HTMLHeadingElement>(null);
+  const refResponse = useRef<HTMLHeadingElement>(null);
   const [height, setHeight] = useState<number>(0);
   const { lang } = useContext(MainContext);
+  const [position, setPosition] = useState<number>(0);
 
   useEffect(() => {
     const handleResize = () => {
       if (ref.current) {
         setHeight(ref.current.offsetHeight);
+      }
+      if (refResponse.current) {
+        setPosition(refResponse.current.offsetTop);
       }
     };
     if (height === 0) {
@@ -33,14 +38,19 @@ export default function ViewPhone(): JSX.Element {
 
   return (
     <>
-      <div style={{ backgroundColor: "#fff", height: "max(45vh)" }}>
+      <div
+        style={{
+          backgroundColor: "#fff",
+          height: `calc(${position}px + max(100px, 16vh))`,
+        }}
+      >
         <H1>RECHARGLE</H1>
         <Teaser>
           {lang === "us"
             ? "Guess the celebrity before the phone battery runs out"
             : "Trouve la célébrité avant que le téléphone ne s'éteigne"}
         </Teaser>
-        <LineFoundYesterday>
+        <LineFoundYesterday ref={refResponse}>
           <Already />
           <Yesterday />
         </LineFoundYesterday>

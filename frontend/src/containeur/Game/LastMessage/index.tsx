@@ -22,12 +22,12 @@ export default function FinillyMessage({ win }: { win: boolean }): JSX.Element {
             {lang === "us" ? (
               <p>
                 Awesome, You’ve completed this Rechargle before the phone run’s
-                out !! Come back tomorrow and discover a new image 😉
+                out !! Come back tomorrow and discover the answer of the day 😉
               </p>
             ) : (
               <p>
                 Bien joué, tu as réussi ce Rechargle avant que la fin de la
-                batterie §§ Reviens demain et découvre une nouvelle image 😉
+                batterie !! Reviens demain et découvre une nouvelle image 😉
               </p>
             )}
           </LastMessage>

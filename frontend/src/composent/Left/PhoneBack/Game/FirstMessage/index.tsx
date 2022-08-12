@@ -9,7 +9,9 @@ export default function IntroductionMessage(): JSX.Element {
     <div style={{ display: "flex" }}>
       <Icone_Rechargle image="iconeRechargle.png" height="100%" />
       {lang === "us" ? (
-        <FirstMessage>Hi ! Do u know who's that ? ⬇️⬇️</FirstMessage>
+        <FirstMessage>
+          Hi ! Do u know who's linked to that photo ? ⬇️⬇️
+        </FirstMessage>
       ) : (
         <FirstMessage>Hey ! A qui ça te fait penser ?? ⬇️⬇️</FirstMessage>
       )}

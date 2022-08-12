@@ -114,7 +114,21 @@ export default function ViewRight(): JSX.Element {
         <Yesterday />
       </LineFoundYesterday>
       <Pub>
-        <img src={require("./pub.png")} alt="pub" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2719238446617123"
+          crossOrigin="anonymous"
+        ></script>
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-format="autorelaxed"
+          data-ad-client="ca-pub-2719238446617123"
+          data-matched-content-rows-num="1"
+          data-matched-content-columns-num="2"
+          data-ad-slot="9072226306"
+        ></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </Pub>
     </Right>
   );

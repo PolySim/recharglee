@@ -194,7 +194,7 @@ export const Pub = styled.div`
   justify-content: center;
   width: 100%;
 
-  img {
+  ins {
     max-height: 20vh;
     width: auto;
     max-width: 80%;

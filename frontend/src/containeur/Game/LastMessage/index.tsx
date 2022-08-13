@@ -26,8 +26,8 @@ export default function FinillyMessage({ win }: { win: boolean }): JSX.Element {
               </p>
             ) : (
               <p>
-                Bien joué, tu as réussi ce Rechargle avant que la fin de la
-                batterie !! Reviens demain et découvre une nouvelle image 😉
+                Bien joué, tu as réussi ce Rechargle avant que la batterie ne
+                soit vide !! Reviens demain et découvre une nouvelle image 😉
               </p>
             )}
           </LastMessage>

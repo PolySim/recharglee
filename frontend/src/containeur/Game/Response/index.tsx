@@ -107,10 +107,15 @@ export default function EnterResponse(): JSX.Element {
   const checkResponse = () => {
     setDisplayWait(true);
     setTimeout(() => {
-      if (message.toLowerCase() !== image.response) {
-        badResponse();
-      } else {
+      if (
+        message.toLowerCase() === image.response ||
+        (message.toLowerCase().slice(0, message.length - 1) ===
+          image.response &&
+          message.slice(-1) === " ")
+      ) {
         goodRep();
+      } else {
+        badResponse();
       }
       setDisplayWait(false);
     }, 4000);

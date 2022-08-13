@@ -3,7 +3,7 @@ import { MainContext } from "src/context";
 import { Name, IconsName, ColumnOnline, TextOnline } from "src/styled";
 
 export default function NameBarre(): JSX.Element {
-  const { lang } = useContext(MainContext);
+  const { lang, info } = useContext(MainContext);
 
   return (
     <Name>
@@ -11,7 +11,7 @@ export default function NameBarre(): JSX.Element {
         <img src={require("./logo.png")} alt="icone" height="100%" />
       </IconsName>
       <ColumnOnline>
-        Rechargle n°{"1"}
+        Rechargle n°{parseInt(info.numero) - 1}
         <TextOnline>
           <span>🟢</span> {lang === "us" ? "Online" : "Connecté"}
         </TextOnline>

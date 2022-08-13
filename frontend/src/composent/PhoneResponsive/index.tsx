@@ -117,7 +117,7 @@ export default function ViewPhone(): JSX.Element {
             </p>
             <p>
               4) Ta batterie se recharge toutes les <strong>24 heures</strong>{" "}
-              et une nouvelle énigme apparait
+              et une nouvelle énigme apparaît
             </p>
           </>
         )}

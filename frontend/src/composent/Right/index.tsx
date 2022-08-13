@@ -104,7 +104,7 @@ export default function ViewRight(): JSX.Element {
             </p>
             <p style={{ transform: `translateX(${-(rule - 1) * 100}%)` }}>
               4) Ta batterie se recharge toutes les <strong>24 heures</strong>{" "}
-              et une nouvelle énigme apparait
+              et une nouvelle énigme apparaît
             </p>
           </Rules>
         )}

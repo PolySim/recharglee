@@ -5,6 +5,14 @@ export type InfoAPI = {
   jour: string;
 };
 
+export type ReturnWinInfo = {
+  win: string;
+};
+
+export type ReturnLoseInfo = {
+  lose: string;
+};
+
 export type ImageAPI = {
   id: string;
   img1: string;

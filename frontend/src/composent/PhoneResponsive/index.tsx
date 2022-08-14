@@ -103,12 +103,11 @@ export default function ViewPhone(): JSX.Element {
           <>
             <p>
               1) Trouve à quelle <strong>célébrité</strong> correspond l'image
-              avant que ta <strong>batterie</strong> soit à 0%
+              avant que ta <strong>batterie</strong> ne soit à 0%
             </p>
             <p>
               2) Pour chaque <strong>erreur</strong> tu <strong>perds</strong>{" "}
-              aléatoirement entre <strong>15</strong> et <strong>30%</strong> de
-              batterie
+              entre <strong>15</strong> et <strong>30%</strong> de batterie
             </p>
             <p>
               3) Tu obtiens <strong>deux</strong> nouveaux{" "}

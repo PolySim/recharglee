@@ -78,7 +78,7 @@ export default function EnterResponse(): JSX.Element {
       let newInfo = info;
       newInfo.lose = (parseInt(newInfo.lose) + 1).toString();
       setInfo(newInfo);
-      changeInfo(newInfo);
+      changeInfo({ lose: "1" });
       localStorage.setItem(`${round}win`, "false");
       setRound(round + 1);
       localStorage.setItem("round", (round + 1).toString());
@@ -93,7 +93,7 @@ export default function EnterResponse(): JSX.Element {
     let newInfo = info;
     newInfo.win = (parseInt(newInfo.win) + 1).toString();
     setInfo(newInfo);
-    changeInfo(newInfo);
+    changeInfo({ win: "1" });
     OnToogleMessage("");
     localStorage.setItem(`${round}responseWin`, message);
     setRound(round + 1);
@@ -108,9 +108,14 @@ export default function EnterResponse(): JSX.Element {
     setDisplayWait(true);
     setTimeout(() => {
       if (
-        message.toLowerCase() === image.response ||
-        (message.toLowerCase().slice(0, message.length - 1) ===
-          image.response &&
+        image.response
+          .split(" ")
+          .some((elt) => elt === message.toLowerCase()) ||
+        (image.response
+          .split(" ")
+          .some(
+            (elt) => elt === message.toLowerCase().slice(0, message.length - 1)
+          ) &&
           message.slice(-1) === " ")
       ) {
         goodRep();

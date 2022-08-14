@@ -8,7 +8,7 @@ export default function TopBarre(): JSX.Element {
   return (
     <Barre>
       <img src={require("./wifi.png")} alt="wifi" />
-      <div>{lang === "us" ? "HORIZON" : "ORANGE"}</div>
+      <div>{lang === "us" ? "HORIZON" : "ORONGE"}</div>
       <ChangeHour />
       <Battery>
         <span>{battery}</span>%

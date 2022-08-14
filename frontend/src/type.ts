@@ -45,6 +45,7 @@ export type ViewMessageProps = {
   color: string;
   message: string;
   perte: string;
+  last: boolean;
 };
 
 export type PhoneBackProps = {

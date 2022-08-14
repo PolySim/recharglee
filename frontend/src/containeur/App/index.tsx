@@ -16,12 +16,14 @@ export default function App(): JSX.Element {
   const [info, setInfo] = useState<InfoAPI>();
   const [message, setMessage] = useState<string>("");
   const [battery, setBattery] = useState<string>("100");
-  const [round, setRound] = useState<number>(0);
+  const [round, setRound] = useState<number>(
+    parseInt(localStorage.getItem("round") || "0")
+  );
   const [displayWait, setDisplayWait] = useState<boolean>(false);
   const [start, setStart] = useState<boolean>(true);
   const [finish, setFinish] = useState<boolean>(false);
   const [lang, setLang] = useState<string>(
-    localStorage.getItem("lang") || "fr"
+    localStorage.getItem("lang") || "us"
   );
 
   const OnToogleMessage = (value: string) => {
@@ -45,11 +47,15 @@ export default function App(): JSX.Element {
           localStorage.setItem("numero", information.jour);
           localStorage.setItem("battery", "100");
           localStorage.setItem("lang", lang);
+          localStorage.setItem("round", "0");
           setBattery("100");
         }
       }
       if (localStorage.getItem("battery")) {
         setBattery(localStorage.getItem("battery") || "");
+      }
+      if (localStorage.getItem(`${round - 1}win`)) {
+        setFinish(true);
       }
       getData();
     }

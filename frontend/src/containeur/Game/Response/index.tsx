@@ -29,16 +29,34 @@ export default function EnterResponse(): JSX.Element {
       parseInt(localStorage.getItem("battery") || "") <= 85 &&
       parseInt(localStorage.getItem("battery") || "") > 60
     ) {
-      localStorage.setItem(`${round + 1}messageLaugh`, " ");
+      if (
+        Object.keys(localStorage).some((key) => key.includes("messageLaugh"))
+      ) {
+        localStorage.setItem(`${round + 1}messageWait`, " ");
+      } else {
+        localStorage.setItem(`${round + 1}messageLaugh`, " ");
+      }
     } else if (
       parseInt(localStorage.getItem("battery") || "") <= 60 &&
       parseInt(localStorage.getItem("battery") || "") > 30
     ) {
-      localStorage.setItem(`${round + 1}indice`, image.indice1);
+      if (Object.keys(localStorage).some((key) => key.includes("indice"))) {
+        localStorage.setItem(`${round + 1}messageWait`, " ");
+      } else {
+        localStorage.setItem(`${round + 1}indice`, image.indice1);
+      }
     } else {
-      localStorage.setItem(`${round + 1}indice`, image.indice2);
+      const nbIncide = Object.keys(localStorage).filter((key) =>
+        key.includes("indice")
+      );
+      if (nbIncide.length === 2) {
+        localStorage.setItem(`${round + 1}messageWait`, " ");
+      } else {
+        localStorage.setItem(`${round + 1}indice`, image.indice2);
+      }
     }
     setRound(round + 1);
+    localStorage.setItem("round", (round + 1).toString());
   };
 
   const badResponse = () => {
@@ -55,6 +73,7 @@ export default function EnterResponse(): JSX.Element {
       : localStorage.setItem("battery", "0");
     localStorage.setItem(`${round}responseFalse${perte}`, message);
     setRound(round + 1);
+    localStorage.setItem("round", (round + 1).toString());
     if (parseInt(battery) - perte <= 0) {
       let newInfo = info;
       newInfo.lose = (parseInt(newInfo.lose) + 1).toString();
@@ -62,6 +81,7 @@ export default function EnterResponse(): JSX.Element {
       changeInfo(newInfo);
       localStorage.setItem(`${round}win`, "false");
       setRound(round + 1);
+      localStorage.setItem("round", (round + 1).toString());
       setFinish(true);
     } else {
       addIndice();
@@ -77,18 +97,25 @@ export default function EnterResponse(): JSX.Element {
     OnToogleMessage("");
     localStorage.setItem(`${round}responseWin`, message);
     setRound(round + 1);
+    localStorage.setItem("round", (round + 1).toString());
     localStorage.setItem(`${round}win`, "true");
     setRound(round + 1);
+    localStorage.setItem("round", (round + 1).toString());
     setFinish(true);
   };
 
   const checkResponse = () => {
     setDisplayWait(true);
     setTimeout(() => {
-      if (message !== image.response) {
-        badResponse();
-      } else {
+      if (
+        message.toLowerCase() === image.response ||
+        (message.toLowerCase().slice(0, message.length - 1) ===
+          image.response &&
+          message.slice(-1) === " ")
+      ) {
         goodRep();
+      } else {
+        badResponse();
       }
       setDisplayWait(false);
     }, 4000);
@@ -126,7 +153,7 @@ export default function EnterResponse(): JSX.Element {
         <Response>
           {lang === "us" ? (
             <input
-              placeholder="Type yours answer ..."
+              placeholder="Type your answer..."
               autoComplete="off"
               maxLength={25}
               value={message}
@@ -137,7 +164,7 @@ export default function EnterResponse(): JSX.Element {
             />
           ) : (
             <input
-              placeholder="Ecrit ta réponse ..."
+              placeholder="Ecris ta réponse..."
               autoComplete="off"
               maxLength={25}
               value={message}

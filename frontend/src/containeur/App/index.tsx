@@ -41,14 +41,14 @@ export default function App(): JSX.Element {
         setInfo(information);
         const imageInfo = await GetImage(information.numero);
         setImage(imageInfo);
-        changeInfo(information);
+        // changeInfo(information);
         if (information.jour !== localStorage.getItem("numero")) {
           localStorage.clear();
           localStorage.setItem("numero", information.jour);
           localStorage.setItem("battery", "100");
           localStorage.setItem("lang", lang);
           localStorage.setItem("round", "0");
-          setBattery("100");
+          setBattery("10");
         }
       }
       if (localStorage.getItem("battery")) {

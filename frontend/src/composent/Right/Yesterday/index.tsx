@@ -10,7 +10,10 @@ export default function Yesterday(): JSX.Element {
   return (
     <Hier>
       <p>{lang === "us" ? "Yesterday" : "Hier"}</p>
-      <img src={`${cleAPI}/image2?num=${info.numero}`} alt={image.alt2} />
+      <img
+        src={`${cleAPI}/image?num=${info.numero}&path=${image.img2}`}
+        alt={image.alt2}
+      />
       <p>{image.alt2}</p>
     </Hier>
   );

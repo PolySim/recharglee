@@ -1,83 +1,99 @@
+import mysql.connector
 import flask
-import os
-import sys
 from flask import Flask, request, send_file, render_template
 from flask_cors import CORS
 import json
-from datetime import datetime, timedelta
-from pytz import timezone
-import pytz
+import base64
+import os
+
+application = Flask(__name__)
+CORS(application, supports_credentials=True)
 
 
-# Relative path setup
-cur_path = os.path.abspath(".")
-sys.path.append(cur_path)
-
-# Setup paths to the metadata and images directories
-META_IMGS_PATH = os.path.abspath("./metadata")
-IMGS_PATH = os.path.abspath("./images")
-
-# Specify the URL of the React frontned
-FRONTEND_URL = "http://localhost:3000"
+# test connection
+@application.route('/hello')
+def helloWorld():
+    return "Hello World"
 
 
-app = Flask(__name__)
-CORS(app, supports_credentials=True)
-
-picFolder = os.path.join("static")
-app.config['UPLOAD_FOLDER'] = picFolder
-
-# Response Header Wrapper function, setting appropriate header permissions
-
-
-def add_response_headers(response):
-    response.headers.add('Access-Control-Allow-Origin', FRONTEND_URL)
-    response.headers.add('Access-Control-Allow-Credentials', 'true')
-    response.headers.add('Access-Control-Allow-Headers',
-                         'Content-Type,Authorization,Cache-Control')
-    response.headers.add('Access-Control-Allow-Methods',
-                         'GET,PUT,POST,DELETE,OPTIONS')
-    return response
+def format_api_info(SQL_result):
+    return {
+        "lose": SQL_result[0],
+        "win": SQL_result[1],
+        "numero": SQL_result[2]
+    }
 
 
-@app.route('/hello')
-def say_hello_world():
-    return flask.jsonify({'result': "Hello Connected React World!!!"})
-
-
-@app.route('/api/info')
+@application.route('/api/info')
 def get_information():
     try:
-        meta_files = os.listdir(META_IMGS_PATH)
-        for meta_file in meta_files:
-            if meta_file == "info.json":
-                meta_fpath = os.path.join(META_IMGS_PATH, meta_file)
-                with open(meta_fpath, 'r') as meta_file:
-                    meta_data = json.load(meta_file)
-                    return flask.jsonify(meta_data)
+        connection = mysql.connector.connect(host='127.0.0.1', database='Rechargle', user='root',
+                                             password='Simon_256')
+        cursor = connection.cursor()
+        request = "SELECT * FROM game;"
+        cursor.execute(request)
+        result = cursor.fetchall()
+        return flask.jsonify(format_api_info(result[0]))
     except Exception as e:
         print(f"Failed with message: {str(e)}")
         response = flask.make_response(
             "Dataset screen display unsuccessful...", 403)
-        response = add_response_headers(response)
         return response
 
+    finally:
+        # Close connection
+        if connection:
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
 
-@app.route('/api/images')
+
+def format_api_image(SQL_result):
+    return {
+        "alt1": SQL_result[2],
+        "alt2": SQL_result[4],
+        "id": SQL_result[0],
+        "img1": SQL_result[1],
+        "img2": SQL_result[3],
+        "indice1": SQL_result[5],
+        "indice2": SQL_result[6],
+        "response": SQL_result[7]
+    }
+
+
+@application.route('/api/images')
 def get_images():
     try:
         args = request.args.to_dict()
         numero = args['num']
-        meta_files = os.listdir(META_IMGS_PATH)
-        for meta_file in meta_files:
-            if meta_file == str(numero) + ".json":
-                meta_fpath = os.path.join(META_IMGS_PATH, meta_file)
-                with open(meta_fpath, 'r') as meta_file:
-                    meta_data = json.load(meta_file)
-                    return flask.jsonify(meta_data)
+        connection = mysql.connector.connect(host='127.0.0.1', database='Rechargle', user='root',
+                                             password='Simon_256')
+        cursor = connection.cursor()
+        SQLrequest = f"SELECT * FROM image WHERE id = {numero};"
+        cursor.execute(SQLrequest)
+        result = cursor.fetchall()
+        return flask.jsonify(format_api_image(result[0]))
+    except Exception as e:
+        print(f"Failed with message: {str(e)}")
         response = flask.make_response(
             "Dataset screen display unsuccessful...", 403)
         return response
+
+    finally:
+        # Close connection
+        if connection:
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
+
+@application.route('/image', methods=['GET'])
+def get_image():
+    try:
+        args = request.args.to_dict()
+        numero = args['num']
+        path = args['path']
+        return send_file(f"static/{numero}/{path}")
     except Exception as e:
         print(f"Failed with message: {str(e)}")
         response = flask.make_response(
@@ -85,57 +101,44 @@ def get_images():
         return response
 
 
-@app.route('/image1', methods=['GET'])
-def load_image1():
-    num = str(request.args.get('num'))
-    meta_path = os.path.join(META_IMGS_PATH, num+".json")
-    with open(meta_path, 'r') as meta_file:
-        meta_data = json.load(meta_file)
-    fpath = os.path.join(
-        app.config['UPLOAD_FOLDER'], str(num), meta_data["img1"])
-    if not os.path.isfile(fpath) or not os.path.exists(fpath):
-        raise ValueError(f"No file found: {fpath}")
-
-    return send_file(fpath)
-
-
-@app.route('/image2', methods=['GET'])
-def load_image2():
-    num = str(request.args.get('num'))
-    meta_path = os.path.join(META_IMGS_PATH, num+".json")
-    with open(meta_path, 'r') as meta_file:
-        meta_data = json.load(meta_file)
-    fpath = os.path.join(
-        app.config['UPLOAD_FOLDER'], str(num), meta_data["img2"])
-    if not os.path.isfile(fpath) or not os.path.exists(fpath):
-        raise ValueError(f"No file found: {fpath}")
-
-    return send_file(fpath)
-
-
-@app.route("/api/update", methods=["PUT"])
+@application.route('/api/update', methods=["PUT"])
 def update_info():
     try:
-        values = request.json
-        paris_day = datetime.now(pytz.timezone('Europe/Paris')).day
-        meta_path = os.path.join(META_IMGS_PATH, "info.json")
-        with open(meta_path, 'r') as meta_file:
-            meta_data = json.load(meta_file)
-        if str(paris_day) != meta_data["jour"]:
-            values = {"jour": str(paris_day), "win": "0", "lose": "0", "numero": str(
-                int(values["numero"]))}
-            # values = {"jour" : str(paris_day), "win" : "0", "lose" : "0", "numero" : str(int(values["numero"]) + 1)}
-        meta_fpath = os.path.join(META_IMGS_PATH, "info.json")
-        with open(meta_fpath, 'w') as meta_filee:
-            json.dump(values, meta_filee)
+        connection = mysql.connector.connect(host='127.0.0.1', database='Rechargle', user='root',
+                                             password='Simon_256')
+        cursor = connection.cursor()
+        args = request.json
+        print(request.json)
+        win = args['win']
+        value = args['value']
+        numero = args['numero']
 
-        response = flask.jsonify({"success": True})
+        if(win):
+            SQLrequest = f"""
+                UPDATE game
+                SET number_win = {value}
+                WHERE id = {numero};
+                """
+        else:
+            SQLrequest = f"""
+                    UPDATE game
+                    SET number_lose = {value}
+                    WHERE numero = {numero};
+                    """
+        cursor.execute(SQLrequest)
+        connection.commit()
+        return "Update finish"
     except Exception as e:
         print(f"Failed with message: {str(e)}")
         response = flask.make_response(
             "Dataset screen display unsuccessful...", 403)
-    return response
+        return response
+
+    finally:
+        # Close connection
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
 
 
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=6789)

@@ -54,3 +54,9 @@ export type PhoneBackProps = {
   finish: boolean;
   setFinish: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+export type UpdateWinProps = {
+  win: boolean;
+  value: string;
+  numero: number;
+};

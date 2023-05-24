@@ -78,7 +78,11 @@ export default function EnterResponse(): JSX.Element {
       let newInfo = info;
       newInfo.lose = (parseInt(newInfo.lose) + 1).toString();
       setInfo(newInfo);
-      changeInfo(newInfo);
+      changeInfo({
+        win: false,
+        numero: parseInt(newInfo.numero),
+        value: newInfo.lose,
+      });
       localStorage.setItem(`${round}win`, "false");
       setRound(round + 1);
       localStorage.setItem("round", (round + 1).toString());
@@ -93,7 +97,11 @@ export default function EnterResponse(): JSX.Element {
     let newInfo = info;
     newInfo.win = (parseInt(newInfo.win) + 1).toString();
     setInfo(newInfo);
-    changeInfo(newInfo);
+    changeInfo({
+      win: true,
+      numero: parseInt(newInfo.numero),
+      value: newInfo.win,
+    });
     OnToogleMessage("");
     localStorage.setItem(`${round}responseWin`, message);
     setRound(round + 1);
